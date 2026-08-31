@@ -23,10 +23,6 @@ nav {
 	border-bottom: 1px solid #0c0c0c20;
 }
 
-nav a {
-	font-size: 20px;
-}
-
 nav .name {
 	display: flex;
 	align-items: center;
@@ -42,6 +38,8 @@ nav div a {
 	padding: 7.5px;
 	border-radius: 10px;
 	align-content: center;
+	font-size: 16px;
+	padding: 7px;
 }
 
 .rblink {
@@ -54,4 +52,13 @@ header {
 	width: 85%;
 	margin: 25px auto;
 	border-radius: 10px;
+}
+
+footer {
+	font-style: italic;
+	padding: 25px;
+	position: fixed;
+	width: 100%;
+	bottom: 0px;
+	text-align: center;
 }

@@ -1,14 +1,14 @@
 :root {
-	--w: #fefefe;
-	--b: #0c0c0c;
-	--rojo: #ff2525;
-	--azul: #2f44ff;
-	--celeste: #53eaff;
-	--azulfondo: #0c1247;
-	--rojop: #ffb0b0;
-	--gris: #606060;
-	--celeste2: #6cc6f2;
-	--azulbb: #6184e2;
+	--w         : #fefefe;
+	--b         : #0c0c0c;
+	--rojo      : #ff2525;
+	--azul      : #2f44ff;
+	--celeste   : #53eaff;
+	--azulfondo : #0c1247;
+	--rojop     : #ffb0b0;
+	--gris      : #606060;
+	--celeste2  : #6cc6f2;
+	--azulbb    : #6184e2;
 }
 
 * {
@@ -52,5 +52,14 @@ nav div a:hover {
 
 header {
 	background-color: var(--w);
-	box-shadow: 2px 3px 5px #0c0c0c40;
+	box-shadow: 2px 3px 5px #0c0c0c20;
+}
+
+header h1 span {
+	color: var(--celeste2);
+}
+
+footer {
+	background-color: var(--azulfondo);
+	color: var(--celeste2);
 }
