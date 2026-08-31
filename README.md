@@ -7,7 +7,15 @@
 
 ## Version log
 
-### v 0.0.1 (alpha) — 31/Agosto/2026
+### v0.0.1 (alpha) — 31/Agosto/2026 (SarayPey)
 
 - Creados `colorset.css`, `index.html` y `style.css`.
 - Modificado `README.html`.
+
+### v0.0.2 (alpha) — 31/Agosto/2026 (SarayPey)
+
+- Creado `credits.md`.
+- Modificado `colorset.css`, `index.html`, `style.css` y `README.md`.
+- Nav agregado en `index.html`.
+- Colores agregados en `colorset.css`.
+
