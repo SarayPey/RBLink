@@ -21,14 +21,11 @@ body {
 
 nav {
 	background-color: var(--azulfondo);
+	box-shadow: 0px 2px 10px #0c0c0c40;
 }
 
 nav a {
 	color: var(--w);
-}
-
-nav #name .material-symbols-outlined {
-	color: var(--celeste);
 }
 
 .r {
@@ -51,4 +48,9 @@ nav div a:hover {
 	border: 1px solid;
 	background-color: var(--azul);
 	color: var(--w);
+}
+
+header {
+	background-color: var(--w);
+	box-shadow: 2px 3px 5px #0c0c0c40;
 }

@@ -19,3 +19,7 @@
 - Nav agregado en `index.html`.
 - Colores agregados en `colorset.css`.
 
+### v0.0.3 (alpha) — 31/Agosto/2026 (SarayPey)
+
+- Modificado `colorset.css`, `index.html`, `style.css` y `README.md`.
+- Header agregado en `index.html`.

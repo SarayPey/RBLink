@@ -5,6 +5,7 @@
 	padding: 0;
 	text-decoration: none;
 	transition: all .2s;
+	font-family: roboto;
 }
 
 .material-symbols-outlined {
@@ -19,7 +20,6 @@ nav {
 	display: flex;
 	justify-content: space-between;
 	padding: 1% 2.5%;
-	font-family: roboto;
 	border-bottom: 1px solid #0c0c0c20;
 }
 
@@ -27,7 +27,7 @@ nav a {
 	font-size: 20px;
 }
 
-nav #name {
+nav .name {
 	display: flex;
 	align-items: center;
 	font-size: 36px;
@@ -47,4 +47,11 @@ nav div a {
 .rblink {
 	font-style: italic;
 	font-weight: 900;
+}
+
+header {
+	padding: 2.5%;
+	width: 85%;
+	margin: 25px auto;
+	border-radius: 10px;
 }
