@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
 	--w: #fefefe;
 	--b: #0c0c0c;
@@ -11,19 +13,129 @@
 	--azulbb: #6184e2;
 }
 
-*{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+body {
+    background-image: url("img/fondo1.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+  }
+
+* {
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	transition: all .2s;
+	font-family: roboto;
+}
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 600,
+  'GRAD' 0,
+  'opsz' 48
 }
 
+nav {
+	display: flex;
+	justify-content: space-between;
+	padding: 1% 2.5%;
+	border-bottom: 1px solid #0c0c0c20;
+}
+
+nav a {
+	font-size: 20px;
+}
+
+nav .name {
+	display: flex;
+	align-items: center;
+	font-size: 36px;
+}
+
+nav div {
+	display: flex;
+	gap: 24px;
+}
+
+nav div a {
+	padding: 7.5px;
+	border-radius: 10px;
+	align-content: center;
+}
+
+.rblink {
+	font-style: italic;
+	font-weight: 900;
+}
+
+
 .container{
+    background-color: var(--w);
+    width: 40rem;
+    height: 40rem;
+    border-radius: 20px;
+    margin:auto;
+    margin-top: 5rem;
+}
+
+.titulo{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding-top: 3rem;
+}
+
+.correo{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 2rem 0 ;
+}
+
+.texcorreo{
+    width: 300px;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--gris);
+    color: var(--b);
+}
+
+.texcorreo::placeholder{
+    color: var(--w);
+}
+
+.texcontraseña::placeholder{
+    color: var(--w);
+}
+
+.contraseña{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.texcontraseña{
+    width: 300px;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--gris);
+    color: var(--w);
+}
+
+.btniniciar{
+    width: 315px;
+    height: 40px;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 10px;
     background-color: var(--azulfondo);
-    width: 40rem;
-    height: 40rem;
-    border-radius: 20px;
+    color: var(--w);
+    cursor: pointer;
+    margin-top: 3rem;
 }
 
 .login-form{
@@ -31,14 +143,26 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
     margin-top: 2rem;
 }
 
+
+.registro{
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+
 h1{
-    color: var(--celeste);
+    color: var(--azul);
 }
 
 p{
-    color: var(--w);
+    color: var(--negro);
+}
+
+a{
+    color: var(--azul);
 }
