@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RBLink | Iniciar sesión</title>
+  <link rel="stylesheet" href="../css/colorset.css">
+  <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+  <nav>
+    <a href="../index.html" class="name"><span class="rblink"><span class="r">R</span><span class="b">B</span><span class="link">Link</span></span></a>
+    <div>
+      <a href="../index.html">Inicio</a>
+      <a href="register.html">Registrarse</a>
+    </div>
+  </nav>
+
+  <section>
+    <div class="container">
+      <div class="titulo">
+        <h1>Iniciar sesión</h1>
+        <p>Bienvenido a RBLink</p>
+      </div>
+
+      <form id="loginForm" class="login-form">
+        <div class="campo">
+          <p>Correo institucional:</p>
+          <input type="email" id="email" name="email" class="input" placeholder="usuario@institucion.cl" required>
+        </div>
+
+        <div class="campo">
+          <p>Contraseña:</p>
+          <input type="password" id="password" name="password" class="input" placeholder="Ingresa tu contraseña" required>
+        </div>
+
+        <button class="btniniciar" type="submit">Iniciar sesión</button>
+        <p id="errorMessage" class="error-msg" role="alert" aria-live="polite"></p>
+      </form>
+
+      <div class="registro">
+        <p>¿No tienes una cuenta? <a href="register.html">Regístrate</a></p>
+      </div>
+    </div>
+  </section>
+
+  <script src="../js/login.js"></script>
+</body>
+</html>

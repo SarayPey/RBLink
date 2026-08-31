@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RBLink | Registro</title>
+  <link rel="stylesheet" href="../colorset.css">
+  <link rel="stylesheet" href="../css/register.css">
+</head>
+<body>
+  <nav>
+    <a href="../index.html" class="name"><span class="rblink"><span class="r">R</span><span class="b">B</span><span class="link">Link</span></span></a>
+    <div>
+      <a href="../index.html">Inicio</a>
+      <a href="login.html">Iniciar sesión</a>
+    </div>
+  </nav>
+
+  <section>
+    <div class="container">
+      <div class="titulo">
+        <h1>Crear cuenta</h1>
+        <p>Únete a RBLink</p>
+      </div>
+
+      <form id="registerForm" class="registro-form">
+        <div class="campo">
+          <p>Nombre completo:</p>
+          <input type="text" id="fullName" name="fullName" class="input" placeholder="Ingresa tu nombre" required>
+        </div>
+
+        <div class="campo">
+          <p>Correo institucional:</p>
+          <input type="email" id="email" name="email" class="input" placeholder="usuario@institucion.cl" required>
+        </div>
+
+        <div class="campo">
+          <p>Tipo de usuario:</p>
+          <select id="role" name="role" class="input select" required>
+            <option value="">Selecciona una opción</option>
+            <option value="estudiante">Estudiante</option>
+            <option value="funcionario">Funcionario</option>
+            <option value="admin">Administrador</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <p>Contraseña:</p>
+          <input type="password" id="password" name="password" class="input" placeholder="Mínimo 6 caracteres" required>
+        </div>
+
+        <div class="campo">
+          <p>Confirmar contraseña:</p>
+          <input type="password" id="confirmPassword" name="confirmPassword" class="input" placeholder="Repite tu contraseña" required>
+        </div>
+
+        <button class="btnregistro" type="submit">Registrarse</button>
+        <p id="successMessage" class="success-msg" aria-live="polite"></p>
+        <p id="errorMessage" class="error-msg" role="alert" aria-live="polite"></p>
+      </form>
+
+      <div class="registro">
+        <p>¿Ya tienes una cuenta? <a href="login.html">Inicia sesión</a></p>
+      </div>
+    </div>
+  </section>
+
+  <script src="../js/register.js"></script>
+</body>
+</html>

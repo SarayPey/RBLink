@@ -14,7 +14,7 @@
 }
 
 body {
-    background-image: url("img/fondo6767.png");
+    background-color: gray;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
