@@ -1,0 +1,16 @@
+:root {
+	--w: #fefefe;
+	--b: #0c0c0c;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	transition: all .2s;
+	color: var(--b);
+}
+
+body {
+	background-color: var(--w);
+}
