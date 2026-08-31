@@ -14,7 +14,7 @@
 }
 
 body {
-    background-image: url("img/fondo1.png");
+    background-image: url("img/fondo6767.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -99,16 +99,16 @@ nav div a {
     padding: 0.5rem;
     border: none;
     border-radius: 5px;
-    background-color: var(--gris);
+    background-color: #dfdfdf;
     color: var(--b);
 }
 
 .texcorreo::placeholder{
-    color: var(--w);
+    color: var(--b);
 }
 
 .texcontraseña::placeholder{
-    color: var(--w);
+    color: var(--b);
 }
 
 .contraseña{
@@ -122,7 +122,7 @@ nav div a {
     padding: 0.5rem;
     border: none;
     border-radius: 5px;
-    background-color: var(--gris);
+    background-color: #dfdfdf;
     color: var(--w);
 }
 
