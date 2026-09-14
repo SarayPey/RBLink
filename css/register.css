@@ -14,7 +14,9 @@
 }
 
 body {
+  background-color: var(--azulfondo);
   background-image: url("../img/fondo.png");
+  background-blend-mode: screen;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -76,10 +78,9 @@ section {
 }
 
 .container {
-  background-color: rgba(255, 255, 255, 0.96);
   width: min(40rem, 100%);
   border-radius: 20px;
-  box-shadow: 0 20px 50px rgba(12, 18, 71, 0.18);
+  box-shadow: 0 20px 50px #0c12472e;
   padding: 2.5rem 2rem 2rem;
 }
 

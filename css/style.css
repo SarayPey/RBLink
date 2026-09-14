@@ -5,7 +5,8 @@
 	padding: 0;
 	text-decoration: none;
 	transition: all .2s;
-	font-family: roboto;
+	font-family: roboto, sans-serif;
+	letter-spacing: -0.5px;
 }
 
 .material-symbols-outlined {
@@ -20,7 +21,7 @@ nav {
 	display: flex;
 	justify-content: space-between;
 	padding: 1% 2.5%;
-	border-bottom: 1px solid #0c0c0c20;
+	border-bottom: 1px solid #0c0c0c;
 }
 
 nav .name {
@@ -45,9 +46,11 @@ nav div a {
 .rblink {
 	font-style: italic;
 	font-weight: 900;
+	-webkit-user-select: none;
+	user-select: none;
 }
 
-header {
+header, section {
 	padding: 2.5%;
 	width: 85%;
 	margin: 25px auto;

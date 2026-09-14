@@ -1,48 +1,40 @@
 @keyframes r {
-	from {transform: translate(-15px, -20px) rotate(45deg); opacity: 0%;}
+	from {transform: translate(-15px, -25px) rotate(45deg) scale(0.45); filter: blur(15px);}
 }
 
 @keyframes b {
-	from {transform: translate(5px, -25px) rotate(-30deg); opacity: 0%;}
+	from {transform: translate(05px, -25px) rotate(-30deg) scale(0.45); filter: blur(15px);}
 }
 
 @keyframes link {
-	from {transform: translate(20px, -30px) rotate(-50deg); opacity: 0%;} 
+	from {transform: translate(25px, -25px) rotate(-50deg) scale(0.45); filter: blur(15px);} 
 }
 
 @keyframes header {
-	from {transform: translate(-75px, -50px); filter: brightness(500%) blur(5px)}
+	from {transform: translate(-75px, -20px) scale(0.5); filter: brightness(750%) blur(25px);}
 }
 
 
 nav .name {
 	display: inline-block;
 	position: relative;
-	animation-name: header;
-	animation-duration: 5s;
-	animation-timing-function: cubic-bezier(.72,.47,.2,.89);
+	animation: header 2s cubic-bezier(.72,.47,.2,.89);
 }
 
 .nameH .rblink .r {
 	display: inline-block;
 	position: relative;
-	animation-name: r;
-	animation-duration: 2s;
-	animation-timing-function: cubic-bezier(.83,.32,.06,.97);
+	animation: r 2s cubic-bezier(.83,.32,.06,.97);
 }
 
 .nameH .rblink .b {
 	display: inline-block;
 	position: relative;
-	animation-name: b;
-	animation-duration: 2s;
-	animation-timing-function: cubic-bezier(.83,.32,.06,.97);
+	animation: b 2s cubic-bezier(.83,.32,.06,.97);
 }
 
 .nameH .rblink .link {
 	display: inline-block;
 	position: relative;
-	animation-name: link;
-	animation-duration: 2s;
-	animation-timing-function: cubic-bezier(.83,.32,.06,.97);
+	animation: link 2s cubic-bezier(.83,.32,.06,.97);
 }

@@ -50,13 +50,13 @@ nav div a:hover {
 	color: var(--w);
 }
 
-header {
+header, section {
 	background-color: var(--w);
-	box-shadow: 2px 3px 5px #0c0c0c20;
+	box-shadow: 2px 3px 7px #0c0c0c30;
 }
 
-header h1 span {
-	color: var(--celeste2);
+header h2 span {
+	color: var(--rojo);
 }
 
 .input::placeholder, select:invalid, select:valid, option {

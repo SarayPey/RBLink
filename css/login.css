@@ -23,49 +23,15 @@
 }
 
 body {
+  background-color: var(--azulfondo);
   background-image: url("../img/fondo.png");
+  background-blend-mode: screen;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   min-height: 100vh;
   margin: 0;
 }
-
-nav a {
-  font-size: 20px;
-  color: var(--w);
-}
-
-nav .name {
-  display: flex;
-  align-items: center;
-  font-size: 36px;
-}
-
-nav div {
-  display: flex;
-  gap: 24px;
-  align-items: center;
-}
-
-nav div a {
-  padding: 7.5px;
-  border-radius: 10px;
-  align-content: center;
-}
-
-nav div a:hover {
-  background-color: var(--azul);
-}
-
-.rblink {
-  font-style: italic;
-  font-weight: 900;
-}
-
-.r { color: var(--celeste); }
-.b { color: var(--azul); }
-.link { color: var(--rojo); }
 
 section {
   display: flex;
