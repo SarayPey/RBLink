@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nuevo reporte | Yuyito</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+
+<body>
+
+    <nav class="navbar">
+
+        <a href="dashboard.html" class="logo">
+            <span class="r">R</span><span class="b">B</span><span class="link">Link</span>
+        </a>
+
+        <div class="nav-right">
+
+            <span class="welcome">
+                <i class="bi bi-person-circle"></i>
+                Hola, Usuario
+            </span>
+
+            <a href="perfil.html" class="profile-button">
+                <i class="bi bi-person"></i>
+                Perfil
+            </a>
+
+            <a href="index.html" class="logout-button">
+                <i class="bi bi-box-arrow-right"></i>
+                Salir
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- CONTENIDO -->
+    <main class="new-report-page">
+
+        <!-- ENCABEZADO -->
+        <div class="new-report-header">
+
+            <div>
+
+                <a href="dashboard.html" class="back-link">
+                    <i class="bi bi-arrow-left"></i>
+                    Volver al dashboard
+                </a>
+
+                <p class="small-title">NUEVO REPORTE</p>
+
+                <h1>
+                    Reportar un <span>problema</span>
+                </h1>
+
+                <p class="description">
+                    Completa los datos para informar un problema dentro del establecimiento.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- FORMULARIO -->
+        <section class="report-form-card">
+
+            <form>
+
+                <!-- INFORMACIÓN PRINCIPAL -->
+                <div class="form-section">
+
+                    <div class="form-section-title">
+
+                        <div class="form-icon blue">
+                            <i class="bi bi-file-earmark-text"></i>
+                        </div>
+
+                        <div>
+                            <h2>Información del reporte</h2>
+                            <p>Describe el problema que encontraste.</p>
+                        </div>
+
+                    </div>
+
+
+                    <!-- TÍTULO -->
+                    <div class="form-group">
+
+                        <label for="titulo">
+                            Título del problema
+                        </label>
+
+                        <input
+                            type="text"
+                            id="titulo"
+                            placeholder="Ej: Ventana rota en sala 203"
+                        >
+
+                    </div>
+
+
+                    <!-- CATEGORÍA -->
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="categoria">
+                                Categoría
+                            </label>
+
+                            <div class="input-icon">
+
+                                <i class="bi bi-grid"></i>
+
+                                <select id="categoria">
+
+                                    <option selected disabled>
+                                        Selecciona una categoría
+                                    </option>
+
+                                    <option>Infraestructura</option>
+                                    <option>Electricidad</option>
+                                    <option>Agua y sanitarios</option>
+                                    <option>Mobiliario</option>
+                                    <option>Limpieza</option>
+                                    <option>Seguridad</option>
+                                    <option>Otro</option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- UBICACIÓN -->
+                        <div class="form-group">
+
+                            <label for="ubicacion">
+                                Ubicación
+                            </label>
+
+                            <div class="input-icon">
+
+                                <i class="bi bi-geo-alt"></i>
+
+                                <input
+                                    type="text"
+                                    id="ubicacion"
+                                    placeholder="Ej: Sala 203"
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- DESCRIPCIÓN -->
+                    <div class="form-group">
+
+                        <label for="descripcion">
+                            Descripción
+                        </label>
+
+                        <textarea
+                            id="descripcion"
+                            rows="6"
+                            placeholder="Describe qué ocurrió, dónde ocurrió y cualquier detalle que pueda ayudar a solucionar el problema."
+                        ></textarea>
+
+                        <span class="input-help">
+                            Entrega la mayor cantidad de información posible.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FOTOGRAFÍA -->
+                <div class="form-section">
+
+                    <div class="form-section-title">
+
+                        <div class="form-icon orange">
+                            <i class="bi bi-camera"></i>
+                        </div>
+
+                        <div>
+                            <h2>Fotografía</h2>
+                            <p>Agrega una imagen como evidencia del problema.</p>
+                        </div>
+
+                    </div>
+
+
+                    <label for="imagen" class="image-upload">
+
+                        <i class="bi bi-cloud-arrow-up"></i>
+
+                        <strong>Seleccionar fotografía</strong>
+
+                        <span>
+                            JPG, JPEG o PNG
+                        </span>
+
+                        <input
+                            type="file"
+                            id="imagen"
+                            accept="image/png, image/jpeg"
+                        >
+
+                    </label>
+
+                </div>
+
+
+                <!-- AVISO -->
+                <div class="form-notice">
+
+                    <i class="bi bi-info-circle"></i>
+
+                    <div>
+
+                        <strong>Antes de enviar</strong>
+
+                        <p>
+                            Verifica que la información ingresada sea correcta
+                            y que la ubicación del problema esté bien indicada.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOTONES -->
+                <div class="form-actions">
+
+                    <a href="dashboard.html" class="cancel-button">
+                        <i class="bi bi-x-lg"></i>
+                        Cancelar
+                    </a>
+
+                    <button type="submit" class="submit-button">
+                        <i class="bi bi-send"></i>
+                        Enviar reporte
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        Proyecto Yuyito · Sistema de reportes de infraestructura
+    </footer>
+
+
+</body>
+</html>
+
