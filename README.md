@@ -1,6 +1,6 @@
 >*Para proyecto YUYITO, tres personas con tiempo libre y poca libertad de expresión decidieron hacer una locura que les salió cool:*
 
-# ✨ RBLink ✨
+# [✨ RBLink ✨](https://saraypey.github.io/RBLink/)
 
 ### La herramienta que tu colegio **DESEA** tener.  
 <small>*(Las reparaciones se venden por separado).*</small>  
@@ -23,3 +23,9 @@
 
 - Modificado `colorset.css`, `index.html`, `style.css` y `README.md`.
 - Header agregado en `index.html`.
+
+## v0.0.12 (alpha) — 14/Septiembre/20026 (SarayPey)
+
+- Agregando animaciones.
+- Ajustando errores
+- Moviendo `index.html` para que GitHub Pages lo muestre.

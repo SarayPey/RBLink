@@ -31,15 +31,6 @@ body {
   transition: all .2s;
 }
 
-nav {
-  display: flex;
-  justify-content: space-between;
-  padding: 1% 2.5%;
-  border-bottom: 1px solid rgba(12, 18, 71, 0.2);
-  background: rgba(12, 18, 71, 0.85);
-  backdrop-filter: blur(6px);
-}
-
 nav a {
   font-size: 20px;
   color: var(--w);
@@ -140,16 +131,6 @@ h1 {
   background-color: var(--w);
   color: var(--b);
   font-size: 1rem;
-}
-
-.input::placeholder {
-  color: rgba(12, 18, 71, 0.55);
-}
-
-.input:focus,
-.select:focus {
-  outline: 2px solid rgba(83, 234, 255, 0.5);
-  border-color: transparent;
 }
 
 .btnregistro {

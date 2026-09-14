@@ -4,15 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RBLink | Registro</title>
-  <link rel="stylesheet" href="../colorset.css">
+  <link rel="stylesheet" href="../css/colorset.css">
+	<link rel="stylesheet" href="../css/animations.css">
   <link rel="stylesheet" href="../css/register.css">
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
   <nav>
-    <a href="index.html" class="name"><span class="rblink"><span class="r">R</span><span class="b">B</span><span class="link">Link</span></span></a>
+    <a href="../index.html" class="name"><span class="rblink"><span class="r">R</span><span class="b">B</span><span class="link">Link</span></span></a>
     <div>
-      <a href="index.html">Inicio</a>
-      <a href="login.html">Iniciar sesión</a>
+      <a href="../index.html">Inicio</a>
+      <a href="./login.html">Iniciar sesión</a>
     </div>
   </nav>
 
@@ -37,7 +39,7 @@
         <div class="campo">
           <p>Tipo de usuario:</p>
           <select id="role" name="role" class="input select" required>
-            <option value="">Selecciona una opción</option>
+            <option value="" selected>Selecciona una opción</option>
             <option value="estudiante">Estudiante</option>
             <option value="funcionario">Funcionario</option>
             <option value="admin">Administrador</option>
@@ -64,7 +66,7 @@
       </div>
     </div>
   </section>
-
+	<footer>RBLink 2026&copy; — Todos los derechos reservados</footer>
   <script src="../js/register.js"></script>
 </body>
 </html>

@@ -59,6 +59,16 @@ header h1 span {
 	color: var(--celeste2);
 }
 
+.input::placeholder, select:invalid, select:valid, option {
+  color: var(--celeste2);
+}
+
+.input:focus,
+.select:focus {
+  outline: 2px solid var(--celeste2);
+  border-color: transparent;
+}
+
 footer {
 	background-color: var(--azulfondo);
 	color: var(--celeste2);
