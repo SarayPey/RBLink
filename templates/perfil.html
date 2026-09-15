@@ -4,32 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RBLink | Perfil</title>
-  <link rel="stylesheet" href="../colorset.css">
-  <link rel="stylesheet" href="../css/perfil.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/colorset.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/perfil.css') }}">
 </head>
 <body>
     <nav>
-        <a href="" class="name"><span class="rblink"><span class="r">R</span><span class="b">B</span><span class="link">Link</span></span></a>
-        <div>
-            <a href="#">Inicio</a>
-        </div>
+        <a href="{{ url_for('dashboard') }}" class="name"><span class="rblink"><span class="r">R</span><span class="b">B</span><span class="link">Link</span></span></a>
+        <div><a href="{{ url_for('dashboard') }}">Inicio</a><a href="{{ url_for('logout') }}">Cerrar sesión</a></div>
     </nav>
     <section>
         <div class="container">
             <div class="titulo">
-                <img class="foto-perfil" src="../img\Cristian.jpg" alt="">
+                <h1>Mi perfil</h1>
             </div>
             <div class="info-estudiante">
-                <p>Nombre</p>
+                <p><strong>Nombre</strong></p>
+                <p>{{ nombre }}</p>
                 <br>
-                <p></p>Run</p>
+                <p><strong>Correo</strong></p>
+                <p>{{ correo }}</p>
                 <br>
-                <p>Email</p>
-                <br>
-                
+                <p><strong>Tipo de usuario</strong></p>
+                <p>{{ rol|title }}</p>
             </div>
         </div>
     </section>
-    <script src="../js/login.js"></script>
 </body>
 </html>
