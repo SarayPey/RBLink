@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte #{{ reporte.id }} | RBLink</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/colorset.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Reporte #{{ reporte.id }} | RBLink</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/colorset.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
 </head>
 <body>
 <nav class="navbar">
-    <a href="{{ url_for('dashboard') }}" class="logo"><span class="r">R</span><span class="b">B</span><span class="link">Link</span></a>
-    <div class="nav-right"><a href="{{ url_for('perfil') }}" class="profile-button">Mi perfil</a><a href="{{ url_for('logout') }}" class="logout-button">Cerrar sesión</a></div>
+	<a href="{{ url_for('dashboard') }}" class="logo"><span class="r">R</span><span class="b">B</span><span class="link">Link</span></a>
+	<div class="nav-right"><a href="{{ url_for('perfil') }}" class="profile-button">Mi perfil</a><a href="{{ url_for('logout') }}" class="logout-button">Cerrar sesión</a></div>
 </nav>
 <main class="dashboard">
-    <section class="dashboard-header">
-        <div><p class="small-title">REPORTE #{{ "%03d"|format(reporte.id) }}</p><h1>{{ reporte.titulo }}</h1><p class="description">{{ reporte.categoria }} · {{ reporte.ubicacion }}</p></div>
-        <a href="{{ url_for('mis_reportes') }}" class="new-report"><i class="bi bi-arrow-left"></i> Volver</a>
-    </section>
-    <section class="recent-section">
-        <div class="report-info">
-            <h2>Descripción</h2>
-            <p>{{ reporte.descripcion }}</p>
-            <br>
-            <p><strong>Prioridad:</strong> {{ reporte.prioridad|title }}</p>
-            <p><strong>Estado:</strong> {{ reporte.estado|replace('_', ' ')|title }}</p>
-            <p><strong>Fecha:</strong> {{ reporte.fecha_creacion.strftime('%d/%m/%Y %H:%M') }}</p>
-            {% if reporte.imagen %}
-                <p><strong>Fotografía:</strong></p>
-                <img src="{{ url_for('uploaded_file', filename=reporte.imagen) }}" alt="Evidencia del reporte" style="max-width: 100%; border-radius: 12px; margin-top: 10px;">
-            {% endif %}
-        </div>
-    </section>
+	<section class="dashboard-header">
+		<div><p class="small-title">REPORTE #{{ "%03d"|format(reporte.id) }}</p><h1>{{ reporte.titulo }}</h1><p class="description">{{ reporte.categoria }} · {{ reporte.ubicacion }}</p></div>
+		<a href="{{ url_for('mis_reportes') }}" class="new-report"><i class="bi bi-arrow-left"></i> Volver</a>
+	</section>
+	<section class="recent-section">
+		<div class="report-info">
+			<h2>Descripción</h2>
+			<p>{{ reporte.descripcion }}</p>
+			<br>
+			<p><strong>Prioridad:</strong> {{ reporte.prioridad|title }}</p>
+			<p><strong>Estado:</strong> {{ reporte.estado|replace('_', ' ')|title }}</p>
+			<p><strong>Fecha:</strong> {{ reporte.fecha_creacion.strftime('%d/%m/%Y %H:%M') }}</p>
+			{% if reporte.imagen %}
+				<p><strong>Fotografía:</strong></p>
+				<img src="{{ url_for('uploaded_file', filename=reporte.imagen) }}" alt="Evidencia del reporte" style="max-width: 100%; border-radius: 12px; margin-top: 10px;">
+			{% endif %}
+		</div>
+	</section>
 </main>
 <footer>RBLink 2026© — Todos los derechos reservados</footer>
 </body>

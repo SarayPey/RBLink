@@ -1,74 +1,74 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RBLink | Registro</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/colorset.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>RBLink | Registro</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/colorset.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <nav>
-        <a href="{{ url_for('index') }}" class="name"><span class="rblink"><span class="r">R</span><span class="b">B</span><span class="link">Link</span></span></a>
-        <div>
-            <a href="{{ url_for('index') }}">Inicio</a>
-            <a href="{{ url_for('login') }}">Iniciar sesión</a>
-        </div>
-    </nav>
+	<nav>
+		<a href="{{ url_for('index') }}" class="name"><span class="rblink"><span class="r">R</span><span class="b">B</span><span class="link">Link</span></span></a>
+		<div>
+			<a href="{{ url_for('index') }}">Inicio</a>
+			<a href="{{ url_for('login') }}">Iniciar sesión</a>
+		</div>
+	</nav>
 
-    <section>
-        <div class="container">
-            <div class="titulo">
-                <h1>Crear cuenta</h1>
-                <p>Únete a RBLink</p>
-            </div>
+	<section>
+		<div class="container">
+			<div class="titulo">
+				<h1>Crear cuenta</h1>
+				<p>Únete a RBLink</p>
+			</div>
 
-            {% if error %}
-                <p class="error-msg">{{ error }}</p>
-            {% endif %}
+			{% if error %}
+				<p class="error-msg">{{ error }}</p>
+			{% endif %}
 
-            <form action="{{ url_for('registro') }}" method="POST" class="registro-form">
-                <div class="campo">
-                    <p>Nombre completo:</p>
-                    <input type="text" name="nombre" class="input" placeholder="Ingresa tu nombre" required>
-                </div>
+			<form action="{{ url_for('registro') }}" method="POST" class="registro-form">
+				<div class="campo">
+					<p>Nombre completo:</p>
+					<input type="text" name="nombre" class="input" placeholder="Ingresa tu nombre" required>
+				</div>
 
-                <div class="campo">
-                    <p>Correo institucional:</p>
-                    <input type="email" name="correo" class="input" placeholder="usuario@institucion.cl" required>
-                </div>
+				<div class="campo">
+					<p>Correo institucional:</p>
+					<input type="email" name="correo" class="input" placeholder="usuario@institucion.cl" required>
+				</div>
 
-                <div class="campo">
-                    <p>Tipo de usuario:</p>
-                    <select name="rol" class="input select" required>
-                        <option value="" selected disabled>Selecciona una opción</option>
-                        <option value="estudiante">Estudiante</option>
-                        <option value="funcionario">Funcionario</option>
-                        <option value="administrador">Administrador</option>
-                    </select>
-                </div>
+				<div class="campo">
+					<p>Tipo de usuario:</p>
+					<select name="rol" class="input select" required>
+						<option value="" selected disabled>Selecciona una opción</option>
+						<option value="estudiante">Estudiante</option>
+						<option value="funcionario">Funcionario</option>
+						<option value="administrador">Administrador</option>
+					</select>
+				</div>
 
-                <div class="campo">
-                    <p>Contraseña:</p>
-                    <input type="password" name="contrasena" class="input" placeholder="Mínimo 6 caracteres" required>
-                </div>
+				<div class="campo">
+					<p>Contraseña:</p>
+					<input type="password" name="contrasena" class="input" placeholder="Mínimo 6 caracteres" required>
+				</div>
 
-                <div class="campo">
-                    <p>Confirmar contraseña:</p>
-                    <input type="password" name="confirmar_contrasena" class="input" placeholder="Repite tu contraseña" required>
-                </div>
+				<div class="campo">
+					<p>Confirmar contraseña:</p>
+					<input type="password" name="confirmar_contrasena" class="input" placeholder="Repite tu contraseña" required>
+				</div>
 
-                <button class="btnregistro" type="submit">Registrarse</button>
-            </form>
+				<button class="btnregistro" type="submit">Registrarse</button>
+			</form>
 
-            <div class="registro">
-                <p>¿Ya tienes una cuenta? <a href="{{ url_for('login') }}">Inicia sesión</a></p>
-            </div>
-        </div>
-    </section>
+			<div class="registro">
+				<p>¿Ya tienes una cuenta? <a href="{{ url_for('login') }}">Inicia sesión</a></p>
+			</div>
+		</div>
+	</section>
 
-    <footer>RBLink 2026&copy; — Todos los derechos reservados</footer>
+	<footer>RBLink 2026&copy; — Todos los derechos reservados</footer>
 </body>
 </html>

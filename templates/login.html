@@ -1,58 +1,58 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RBLink | Iniciar sesión</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/colorset.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>RBLink | Iniciar sesión</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/colorset.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <nav>
-        <a href="{{ url_for('index') }}" class="name"><span class="rblink"><span class="r">R</span><span class="b">B</span><span class="link">Link</span></span></a>
-        <div>
-            <a href="{{ url_for('index') }}">Inicio</a>
-            <a href="{{ url_for('registro') }}">Registrarse</a>
-        </div>
-    </nav>
+	<nav>
+		<a href="{{ url_for('index') }}" class="name"><span class="rblink"><span class="r">R</span><span class="b">B</span><span class="link">Link</span></span></a>
+		<div>
+			<a href="{{ url_for('index') }}">Inicio</a>
+			<a href="{{ url_for('registro') }}">Registrarse</a>
+		</div>
+	</nav>
 
-    <section>
-        <div class="container">
-            <div class="titulo">
-                <h1>Iniciar sesión</h1>
-                <p>Bienvenido a RBLink</p>
-            </div>
+	<section>
+		<div class="container">
+			<div class="titulo">
+				<h1>Iniciar sesión</h1>
+				<p>Bienvenido a RBLink</p>
+			</div>
 
-            {% if registrado %}
-                <p class="success-msg">Cuenta creada correctamente. Ahora puedes iniciar sesión.</p>
-            {% endif %}
+			{% if registrado %}
+				<p class="success-msg">Cuenta creada correctamente. Ahora puedes iniciar sesión.</p>
+			{% endif %}
 
-            {% if error %}
-                <p class="error-msg">{{ error }}</p>
-            {% endif %}
+			{% if error %}
+				<p class="error-msg">{{ error }}</p>
+			{% endif %}
 
-            <form action="{{ url_for('login') }}" method="POST" class="login-form">
-                <div class="campo">
-                    <p>Correo institucional:</p>
-                    <input type="email" name="correo" class="input" placeholder="usuario@institucion.cl" required>
-                </div>
+			<form action="{{ url_for('login') }}" method="POST" class="login-form">
+				<div class="campo">
+					<p>Correo institucional:</p>
+					<input type="email" name="correo" class="input" placeholder="usuario@institucion.cl" required>
+				</div>
 
-                <div class="campo">
-                    <p>Contraseña:</p>
-                    <input type="password" name="contrasena" class="input" placeholder="Ingresa tu contraseña" required>
-                </div>
+				<div class="campo">
+					<p>Contraseña:</p>
+					<input type="password" name="contrasena" class="input" placeholder="Ingresa tu contraseña" required>
+				</div>
 
-                <button class="btniniciar" type="submit">Iniciar sesión</button>
-            </form>
+				<button class="btniniciar" type="submit">Iniciar sesión</button>
+			</form>
 
-            <div class="registro">
-                <p>¿No tienes una cuenta? <a href="{{ url_for('registro') }}">Regístrate</a></p>
-            </div>
-        </div>
-    </section>
+			<div class="registro">
+				<p>¿No tienes una cuenta? <a href="{{ url_for('registro') }}">Regístrate</a></p>
+			</div>
+		</div>
+	</section>
 
-    <footer>RBLink 2026&copy; — Todos los derechos reservados</footer>
+	<footer>RBLink 2026&copy; — Todos los derechos reservados</footer>
 </body>
 </html>

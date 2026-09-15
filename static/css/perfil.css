@@ -1,74 +1,75 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
-  --w: #fefefe;
-  --b: #0c0c0c;
-  --rojo: #ff2525;
-  --azul: #2f44ff;
-  --celeste: #53eaff;
-  --azulfondo: #0c1247;
-  --rojop: #ffb0b0;
-  --gris: #606060;
-  --celeste2: #6cc6f2;
-  --azulbb: #6184e2;
+	--w: #fefefe;
+	--b: #0c0c0c;
+	--rojo: #ff2525;
+	--azul: #2f44ff;
+	--celeste: #53eaff;
+	--azulfondo: #0c1247;
+	--rojop: #ffb0b0;
+	--gris: #606060;
+	--celeste2: #6cc6f2;
+	--azulbb: #6184e2;
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
-  box-sizing: border-box;
-  transition: all .2s;
-  font-family: roboto, sans-serif;
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	box-sizing: border-box;
+	transition: all .2s;
+	font-family: roboto, sans-serif;
 }
 
 body {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  min-height: 100vh;
-  margin: 0;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	min-height: 100vh;
+	margin: 0;
 }
 
 nav {
-  display: flex;
-  justify-content: space-between;
-  padding: 1% 2.5%;
-  border-bottom: 1px solid rgba(12, 18, 71, 0.2);
-  background: rgba(12, 18, 71, 0.85);
-  backdrop-filter: blur(6px);
+	display: flex;
+	justify-content: space-between;
+	padding: 1% 2.5%;
+	border-bottom: 1px solid rgba(12, 18, 71, 0.2);
+	background: rgba(12, 18, 71, 0.85);
+	-webkit-backdrop-filter: blur(6px);
+	backdrop-filter: blur(6px);
 }
 
 nav a {
-  font-size: 20px;
-  color: var(--w);
+	font-size: 20px;
+	color: var(--w);
 }
 
 nav .name {
-  display: flex;
-  align-items: center;
-  font-size: 36px;
+	display: flex;
+	align-items: center;
+	font-size: 36px;
 }
 
 nav div {
-  display: flex;
-  gap: 24px;
-  align-items: center;
+	display: flex;
+	gap: 24px;
+	align-items: center;
 }
 
 nav div a {
-  padding: 7.5px;
-  border-radius: 10px;
-  align-content: center;
+	padding: 7.5px;
+	border-radius: 10px;
+	align-content: center;
 }
 
 nav div a:hover {
-  background-color: var(--azul);
+	background-color: var(--azul);
 }
 
 .rblink {
-  font-style: italic;
-  font-weight: 900;
+	font-style: italic;
+	font-weight: 900;
 }
 
 .r { color: var(--celeste); }
@@ -76,55 +77,44 @@ nav div a:hover {
 .link { color: var(--rojo); }
 
 section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - 80px);
-  padding: 40px 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: calc(100vh - 80px);
+	padding: 40px 20px;
 }
 
 .container {
-  background-color: rgba(255, 255, 255, 0.96);
-  height: max(40rem);
-  width: min(45rem, 100%);
-  border-radius: 20px;
-  box-shadow: 0 20px 50px rgba(12, 18, 71, 0.18);
-  padding: 2.5rem 2rem 2rem;
+	background-color: rgba(255, 255, 255, 0.96);
+	height: max(40rem);
+	width: min(45rem, 100%);
+	border-radius: 20px;
+	box-shadow: 0 20px 50px rgba(12, 18, 71, 0.18);
+	padding: 2.5rem 2rem 2rem;
 }
 
 .foto-perfil{
-    border-radius: 100%;
-    width: 10rem;
+		border-radius: 100%;
+		width: 10rem;
 }
 
 .titulo{
-    display: flex;
+		display: flex;
 }
-
-.info-estudiante{
-
-}
-
-
-
-
-
-
-
 
 @media (max-width: 480px) {
-  .container {
-    padding: 1.5rem 1rem 1.25rem;
-  }
+	.container {
+		padding: 1.5rem 1rem 1.25rem;
+	}
 
-  nav {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
+	nav {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 12px;
+	}
 
-  nav div {
-    width: 100%;
-    justify-content: space-between;
-  }
+	nav div {
+		width: 100%;
+		justify-content: space-between;
+	}
 }

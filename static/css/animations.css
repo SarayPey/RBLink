@@ -18,23 +18,23 @@
 nav .name {
 	display: inline-block;
 	position: relative;
-	animation: header 2s cubic-bezier(.72,.47,.2,.89);
+	animation: header 1s cubic-bezier(.72,.47,.2,.89);
 }
 
 .nameH .rblink .r {
 	display: inline-block;
 	position: relative;
-	animation: r 2s cubic-bezier(.83,.32,.06,.97);
+	animation: r 1s cubic-bezier(.83,.32,.06,.97);
 }
 
 .nameH .rblink .b {
 	display: inline-block;
 	position: relative;
-	animation: b 2s cubic-bezier(.83,.32,.06,.97);
+	animation: b 1s cubic-bezier(.83,.32,.06,.97);
 }
 
 .nameH .rblink .link {
 	display: inline-block;
 	position: relative;
-	animation: link 2s cubic-bezier(.83,.32,.06,.97);
+	animation: link 1s cubic-bezier(.83,.32,.06,.97);
 }

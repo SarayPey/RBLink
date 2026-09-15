@@ -1,40 +1,40 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis reportes | RBLink</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/colorset.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Mis reportes | RBLink</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/colorset.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
 </head>
 <body>
 <nav class="navbar">
-    <a href="{{ url_for('dashboard') }}" class="logo"><span class="r">R</span><span class="b">B</span><span class="link">Link</span></a>
-    <div class="nav-right"><a href="{{ url_for('perfil') }}" class="profile-button">Mi perfil</a><a href="{{ url_for('logout') }}" class="logout-button">Cerrar sesión</a></div>
+	<a href="{{ url_for('dashboard') }}" class="logo"><span class="r">R</span><span class="b">B</span><span class="link">Link</span></a>
+	<div class="nav-right"><a href="{{ url_for('perfil') }}" class="profile-button">Mi perfil</a><a href="{{ url_for('logout') }}" class="logout-button">Cerrar sesión</a></div>
 </nav>
 <main class="dashboard">
-    <section class="dashboard-header">
-        <div><p class="small-title">REPORTES</p><h1>Mis reportes</h1><p class="description">Aquí puedes revisar los problemas que has informado.</p></div>
-        <a href="{{ url_for('nuevo_reporte') }}" class="new-report"><i class="bi bi-plus-lg"></i> Nuevo reporte</a>
-    </section>
-    {% if creado %}<div class="form-notice"><i class="bi bi-check-circle"></i><div><strong>Reporte enviado</strong><p>Tu reporte se guardó correctamente.</p></div></div>{% endif %}
-    <section class="recent-section">
-        <div class="reports-list">
-            {% if reportes %}
-                {% for reporte in reportes %}
-                <article class="report">
-                    <div class="report-number">#{{ "%03d"|format(reporte.id) }}</div>
-                    <div class="report-info"><h3>{{ reporte.titulo }}</h3><p><i class="bi bi-geo-alt"></i> {{ reporte.ubicacion }} <span>•</span> {{ reporte.categoria }}</p><span class="date">{{ reporte.fecha_creacion.strftime('%d/%m/%Y %H:%M') }}</span></div>
-                    <div class="report-status {{ 'review' if reporte.estado == 'en_revision' else 'process' if reporte.estado == 'en_proceso' else 'solved' if reporte.estado == 'resuelto' else '' }}">{{ reporte.estado|replace('_', ' ')|title }}</div>
-                    <a href="{{ url_for('reporte', reporte_id=reporte.id) }}" class="view-report">Ver <i class="bi bi-chevron-right"></i></a>
-                </article>
-                {% endfor %}
-            {% else %}
-                <p>No tienes reportes todavía.</p>
-            {% endif %}
-        </div>
-    </section>
+	<section class="dashboard-header">
+		<div><p class="small-title">REPORTES</p><h1>Mis reportes</h1><p class="description">Aquí puedes revisar los problemas que has informado.</p></div>
+		<a href="{{ url_for('nuevo_reporte') }}" class="new-report"><i class="bi bi-plus-lg"></i> Nuevo reporte</a>
+	</section>
+	{% if creado %}<div class="form-notice"><i class="bi bi-check-circle"></i><div><strong>Reporte enviado</strong><p>Tu reporte se guardó correctamente.</p></div></div>{% endif %}
+	<section class="recent-section">
+		<div class="reports-list">
+			{% if reportes %}
+				{% for reporte in reportes %}
+				<article class="report">
+					<div class="report-number">#{{ "%03d"|format(reporte.id) }}</div>
+					<div class="report-info"><h3>{{ reporte.titulo }}</h3><p><i class="bi bi-geo-alt"></i> {{ reporte.ubicacion }} <span>•</span> {{ reporte.categoria }}</p><span class="date">{{ reporte.fecha_creacion.strftime('%d/%m/%Y %H:%M') }}</span></div>
+					<div class="report-status {{ 'review' if reporte.estado == 'en_revision' else 'process' if reporte.estado == 'en_proceso' else 'solved' if reporte.estado == 'resuelto' else '' }}">{{ reporte.estado|replace('_', ' ')|title }}</div>
+					<a href="{{ url_for('reporte', reporte_id=reporte.id) }}" class="view-report">Ver <i class="bi bi-chevron-right"></i></a>
+				</article>
+				{% endfor %}
+			{% else %}
+				<p>No tienes reportes todavía.</p>
+			{% endif %}
+		</div>
+	</section>
 </main>
 <footer>RBLink 2026© — Todos los derechos reservados</footer>
 </body>
