@@ -2,7 +2,7 @@
 
 # [✨ RBLink ✨](https://saraypey.github.io/RBLink/)
 
-### La herramienta que tu colegio **DESEA** tener.  
+### La herramienta que tu colegio ***DESEA*** tener.  
 <small>*(Las reparaciones se venden por separado).*</small>  
 
 ## Version log
