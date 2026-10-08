@@ -2,10 +2,10 @@ import mysql.connector # type: ignore
 
 
 DB_CONFIG = {
-	"host": "localhost",
-	"user": "root",
-	"password": "root",
-	"database": "rblink",
+	'host': 'localhost',
+	'user': 'root',
+	'password': 'root',
+	'database': 'rblink',
 }
 
 

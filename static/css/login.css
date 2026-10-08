@@ -24,7 +24,7 @@
 
 body {
 	background-color: var(--azulfondo);
-	background-image: url("../img/fondo.png");
+	background-image: url('../img/fondo.png');
 	background-blend-mode: screen;
 	background-size: cover;
 	background-repeat: no-repeat;
