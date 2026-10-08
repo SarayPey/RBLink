@@ -1,12 +1,12 @@
 {
-	'extends': [
-		'development'
+	"extends": [
+		"development"
 	],
-	'hints': {
-		'axe/forms': [
-			'default',
+	"hints": {
+		"axe/forms": [
+			"default",
 			{
-				'select-name': 'off'
+				"select-name": "off"
 			}
 		]
 	}
