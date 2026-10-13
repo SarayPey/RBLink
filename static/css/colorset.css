@@ -59,14 +59,52 @@ header h2 span {
 	color: var(--rojo);
 }
 
+label {
+	color: var(--b);
+}
+
+input, select, textarea {
+	border: 1px solid #d5d9ea;
+	background-color: white;
+	color: var(--b);
+}
+
+input::placeholder, textarea::placeholder {
+	color: #7c8aa6;
+}
+
 .input::placeholder, select:invalid, select:valid, option {
   color: var(--celeste2);
 }
 
-.input:focus,
-.select:focus {
+.titulo p, .registro p, .campo p {
+	color: var(--b);
+}
+
+.input:focus, .select:focus {
   outline: 2px solid var(--celeste2);
   border-color: transparent;
+}
+
+.input {
+	border: 1px solid #0c124726;
+	background-color: var(--w);
+	color: var(--b);
+}
+
+.btniniciar {
+	background: linear-gradient(135deg, var(--azul), var(--azulbb));
+	color: var(--w);
+}
+
+.new-report {
+	background-color: var(--azul);
+	color: white;
+	box-shadow: 0 5px 15px #2f44ff40;
+}
+
+.error-msg {
+	color: var(--rojo);
 }
 
 footer {

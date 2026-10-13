@@ -18,7 +18,8 @@
 </head>
 <body>
 	<nav class='navbar'>
-		<a href='{{ url_for('dashboard') }}' class='logo'><span class='r'>R</span><span class='b'>B</span><span class='link'>Link</span></a>
+	<a href='{{ url_for(' dashboard') }}' class='name'><span class='rblink'><span class='r'>R</span><span
+				class='b'>B</span><span class='link'>Link</span></span></a>
 		<div class='nav-right'>
 			<span class='welcome'><i class='bi bi-person-circle'></i> Hola, {{ session['nombre'] }}</span>
 			<a href='{{ url_for('perfil') }}' class='profile-button'><i class='bi bi-person'></i> Perfil</a>

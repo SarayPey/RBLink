@@ -1,16 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
-	--w: #fefefe;
-	--b: #0c0c0c;
-	--rojo: #ff2525;
-	--azul: #2f44ff;
-	--celeste: #53eaff;
 	--azulfondo: #0c1247;
-	--rojop: #ffb0b0;
-	--gris: #606060;
-	--celeste2: #6cc6f2;
-	--azulbb: #6184e2;
 }
 
 * {
@@ -20,6 +11,7 @@
 	box-sizing: border-box;
 	transition: all .2s;
 	font-family: roboto, sans-serif;
+	letter-spacing: -0.5px;
 }
 
 body {
@@ -62,12 +54,6 @@ h1 {
 	font-size: clamp(2rem, 3vw, 2.5rem);
 }
 
-.titulo p,
-.registro p,
-.campo p {
-	color: var(--b);
-}
-
 .login-form {
 	display: flex;
 	flex-direction: column;
@@ -90,10 +76,7 @@ h1 {
 .input {
 	width: 100%;
 	padding: 0.8rem 0.9rem;
-	border: 1px solid #0c124726;
 	border-radius: 10px;
-	background-color: var(--w);
-	color: var(--b);
 	font-size: 1rem;
 }
 
@@ -103,8 +86,6 @@ h1 {
 	padding: 0.7rem;
 	border: none;
 	border-radius: 10px;
-	background: linear-gradient(135deg, var(--azul), var(--azulbb));
-	color: var(--w);
 	cursor: pointer;
 	font-weight: 700;
 	margin-top: 0.6rem;
@@ -122,7 +103,6 @@ h1 {
 	font-size: 0.95rem;
 	font-weight: 700;
 	text-align: center;
-	color: var(--rojo);
 }
 
 .registro {
@@ -132,8 +112,7 @@ h1 {
 	margin-top: 1.2rem;
 }
 
-.registro a,
-.auth-footer a {
+.registro a, .auth-footer a {
 	color: var(--azul);
 	font-weight: 700;
 }

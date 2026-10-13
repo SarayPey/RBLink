@@ -1,16 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
-	--w: #fefefe;
-	--b: #0c0c0c;
-	--rojo: #ff2525;
-	--azul: #2f44ff;
-	--celeste: #53eaff;
 	--azulfondo: #0c1247;
-	--rojop: #ffb0b0;
-	--gris: #606060;
-	--celeste2: #6cc6f2;
-	--azulbb: #6184e2;
 }
 
 body {
@@ -29,8 +20,9 @@ body {
 	margin: 0;
 	padding: 0;
 	text-decoration: none;
-	box-sizing: border-box;
 	transition: all .2s;
+	font-family: roboto, sans-serif;
+	letter-spacing: -0.5px;
 }
 
 section {
@@ -62,9 +54,7 @@ h1 {
 	font-size: clamp(2rem, 3vw, 2.5rem);
 }
 
-.titulo p,
-.registro p,
-.campo p {
+.titulo p, .registro p, .campo p {
 	color: var(--b);
 }
 
@@ -87,8 +77,7 @@ h1 {
 	font-weight: 600;
 }
 
-.input,
-.select {
+.input, .select {
 	width: 100%;
 	padding: 0.8rem 0.9rem;
 	border: 1px solid rgba(12, 18, 71, 0.15);
@@ -123,14 +112,12 @@ h1 {
 	margin-top: 1.2rem;
 }
 
-.registro a,
-.auth-footer a {
+.registro a, .auth-footer a {
 	color: var(--azul);
 	font-weight: 700;
 }
 
-.error-msg,
-.success-msg {
+.error-msg, .success-msg {
 	width: 100%;
 	min-height: 1.2em;
 	margin: 0;
