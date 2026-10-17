@@ -29,3 +29,9 @@
 - Agregando animaciones.
 - Ajustando errores
 - Moviendo `index.html` para que GitHub Pages lo muestre.
+
+## Aplicación Flask
+
+- Ejecuta `database/database.sql` en MySQL para crear o actualizar la base `rblink`; el script agrega `foto_perfil` a instalaciones existentes.
+- Los estudiantes se registran desde `/registro` y se guardan en `usuarios` con el rol `estudiante`, tal como indica el modelo; no necesitan una tabla aparte.
+- Los reportes enviados se guardan en `reportes`. Las fotografías se almacenan en `static/uploads` y su ruta se registra en la base de datos.

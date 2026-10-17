@@ -4,37 +4,66 @@
 	<meta charset='UTF-8'>
 	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
 	<title>RBLink | Perfil</title>
-	<link rel='stylesheet' href='{{ url_for(' static', filename='css/animations.css' ) }}'>
+	<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css'>
+	<link rel='stylesheet' href='{{ url_for('static', filename='css/animations.css') }}'>
 	<link rel='stylesheet' href='{{ url_for('static', filename='css/colorset.css') }}'>
 	<link rel='stylesheet' href='{{ url_for('static', filename='css/perfil.css') }}'>
-	<link rel='stylesheet' href='{{ url_for(' static', filename='css/style.css' ) }}'>
-	<link rel='stylesheet' href='../static/css/animations.css'>
-	<link rel='stylesheet' href='../static/css/colorset.css'>
-	<link rel='stylesheet' href='../static/css/perfil.css'>
-	<link rel='stylesheet' href='../static/css/style.css'>
+	<link rel='stylesheet' href='{{ url_for('static', filename='css/style.css') }}'>
 </head>
 <body>
 	<nav>
 		<a href='{{ url_for('dashboard') }}' class='name'><span class='rblink'><span class='r'>R</span><span class='b'>B</span><span class='link'>Link</span></span></a>
 		<div><a href='{{ url_for('dashboard') }}'>Inicio</a><a href='{{ url_for('logout') }}'>Cerrar sesión</a></div>
 	</nav>
-	<section>
-		<div class='container'>
-			<div class='titulo'>
-				<h1>Mi perfil</h1>
+	<main class='profile-page'>
+		<header class='profile-heading'>
+			<p class='eyebrow'>TU CUENTA</p>
+			<h1>Mi perfil</h1>
+			<p>Administra tu información personal en RBLink.</p>
+		</header>
+
+		{% if error %}<div class='profile-message error'>{{ error }}</div>{% endif %}
+		{% if request.args.get('error') %}<div class='profile-message error'>{{ request.args.get('error') }}</div>{% endif %}
+		{% if request.args.get('actualizado') %}<div class='profile-message success'>Tu fotografía de perfil se actualizó correctamente.</div>{% endif %}
+
+		<section class='profile-card'>
+			<div class='profile-identity'>
+				<div class='avatar-wrap'>
+					{% if foto_perfil %}
+						<img class='profile-avatar' src='{{ url_for('uploaded_file', filename=foto_perfil) }}' alt='Fotografía de {{ nombre }}'>
+					{% else %}
+						<div class='profile-avatar avatar-placeholder'>{{ nombre[0]|upper }}</div>
+					{% endif %}
+				</div>
+				<div>
+					<p class='eyebrow'>{{ rol|replace('_', ' ')|title }}</p>
+					<h2>{{ nombre }}</h2>
+					<p>{{ correo }}</p>
+				</div>
 			</div>
-			<div class='info-estudiante'>
-				<p><strong>Nombre</strong></p>
-				<p>{{ nombre }}</p>
-				<br>
-				<p><strong>Correo</strong></p>
-				<p>{{ correo }}</p>
-				<br>
-				<p><strong>Tipo de usuario</strong></p>
-				<p>{{ rol|title }}</p>
+
+			<form class='photo-form' action='{{ url_for('actualizar_foto_perfil') }}' method='POST' enctype='multipart/form-data'>
+				<label for='foto_perfil'>Cambiar fotografía</label>
+				<div class='photo-controls'>
+					<input id='foto_perfil' name='foto_perfil' type='file' accept='.jpg,.jpeg,.png,image/jpeg,image/png' required>
+					<button type='submit'><i class='bi bi-camera'></i> Guardar foto</button>
+				</div>
+				<p>Formatos JPG o PNG · máximo 5 MB</p>
+			</form>
+		</section>
+
+		<section class='profile-details'>
+			<div class='details-heading'>
+				<span class='details-icon'><i class='bi bi-person-vcard'></i></span>
+				<div><h2>Información de la cuenta</h2><p>Datos asociados a tu usuario.</p></div>
 			</div>
-		</div>
-	</section>
+			<div class='details-grid'>
+				<div><span>Nombre completo</span><strong>{{ nombre }}</strong></div>
+				<div><span>Correo institucional</span><strong>{{ correo }}</strong></div>
+				<div><span>Tipo de usuario</span><strong>{{ rol|replace('_', ' ')|title }}</strong></div>
+			</div>
+		</section>
+	</main>
 	<footer>RBLink 2026&copy; — Todos los derechos reservados</footer>
 </body>
 </html>

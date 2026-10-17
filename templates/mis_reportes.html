@@ -9,14 +9,10 @@
 	<link rel='stylesheet' href='{{ url_for('static', filename='css/colorset.css') }}'>
 	<link rel='stylesheet' href='{{ url_for('static', filename='css/dashboard.css') }}'>
 	<link rel='stylesheet' href='{{ url_for('static', filename='css/style.css') }}'>
-	<link rel='stylesheet' href='../static/css/dashboard.css'>
-	<link rel='stylesheet' href='../static/css/animations.css'>
-	<link rel='stylesheet' href='../static/css/colorset.css'>
-	<link rel='stylesheet' href='../static/css/style.css'>
 </head>
 <body>
 <nav class='navbar'>
-	<a href='{{ url_for(' dashboard') }}' class='name'><span class='rblink'><span class='r'>R</span><span
+	<a href='{{ url_for('dashboard') }}' class='name'><span class='rblink'><span class='r'>R</span><span
 				class='b'>B</span><span class='link'>Link</span></span></a>
 	<div class='nav-right'><a href='{{ url_for('perfil') }}' class='profile-button'>Mi perfil</a><a href='{{ url_for('logout') }}' class='logout-button'>Cerrar sesión</a></div>
 </nav>
@@ -25,6 +21,7 @@
 		<div><p class='small-title'>REPORTES</p><h1>Mis reportes</h1><p class='description'>Aquí puedes revisar los problemas que has informado.</p></div>
 		<a href='{{ url_for('nuevo_reporte') }}' class='new-report'><i class='bi bi-plus-lg'></i> Nuevo reporte</a>
 	</section>
+	{% if error %}<div class='form-notice'><i class='bi bi-exclamation-circle'></i><div><strong>Error</strong><p>{{ error }}</p></div></div>{% endif %}
 	{% if creado %}<div class='form-notice'><i class='bi bi-check-circle'></i><div><strong>Reporte enviado</strong><p>Tu reporte se guardó correctamente.</p></div></div>{% endif %}
 	<section class='recent-section'>
 		<div class='reports-list'>

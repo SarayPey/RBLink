@@ -10,15 +10,12 @@
 	<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css'>
 	<link rel='stylesheet' href='{{ url_for('static', filename='css/colorset.css') }}'>
 	<link rel='stylesheet' href='{{ url_for('static', filename='css/nuevo_reporte.css') }}'>
-	<link rel='stylesheet' href='{{ url_for(' static', filename='css/style.css' ) }}'>
-	<link rel='stylesheet' href='../static/css/nuevo_reporte.css'>
-	<link rel='stylesheet' href='../static/css/animations.css'>
-	<link rel='stylesheet' href='../static/css/colorset.css'>
-	<link rel='stylesheet' href='../static/css/style.css'>
+	<link rel='stylesheet' href='{{ url_for('static', filename='css/style.css') }}'>
+	<link rel='stylesheet' href='{{ url_for('static', filename='css/animations.css') }}'>
 </head>
 <body>
 	<nav class='navbar'>
-	<a href='{{ url_for(' dashboard') }}' class='name'><span class='rblink'><span class='r'>R</span><span
+	<a href='{{ url_for('dashboard') }}' class='name'><span class='rblink'><span class='r'>R</span><span
 				class='b'>B</span><span class='link'>Link</span></span></a>
 		<div class='nav-right'>
 			<span class='welcome'><i class='bi bi-person-circle'></i> Hola, {{ session['nombre'] }}</span>

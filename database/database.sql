@@ -7,8 +7,25 @@ CREATE TABLE IF NOT EXISTS usuarios (
 	correo VARCHAR(150) NOT NULL UNIQUE,
 	contrasena VARCHAR(255) NOT NULL,
 	rol ENUM('estudiante', 'funcionario', 'administrador') DEFAULT 'estudiante',
+	foto_perfil VARCHAR(255) NULL,
 	fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+SET @foto_perfil_existe = (
+	SELECT COUNT(*)
+	FROM information_schema.COLUMNS
+	WHERE TABLE_SCHEMA = DATABASE()
+		AND TABLE_NAME = 'usuarios'
+		AND COLUMN_NAME = 'foto_perfil'
+);
+SET @foto_perfil_sql = IF(
+	@foto_perfil_existe = 0,
+	'ALTER TABLE usuarios ADD COLUMN foto_perfil VARCHAR(255) NULL',
+	'SELECT 1'
+);
+PREPARE foto_perfil_stmt FROM @foto_perfil_sql;
+EXECUTE foto_perfil_stmt;
+DEALLOCATE PREPARE foto_perfil_stmt;
 
 CREATE TABLE IF NOT EXISTS reportes (
 	id INT AUTO_INCREMENT PRIMARY KEY,
