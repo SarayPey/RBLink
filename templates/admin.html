@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Gestión de RBLink</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/colorset.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/management.css') }}">
+</head>
+<body>
+	<nav class="navbar">
+		<a href="{{ url_for('index') }}" class="name">
+			<span class="rblink"><span class="r">R</span><span class="b">B</span><span class="link">Link</span></span>
+		</a>
+		<div class="nav-right">
+			<span class="welcome">Hola, {{ session['nombre'] }}</span>
+			<a href="{{ url_for('dashboard') }}" class="profile-button">Inicio</a>
+			<a href="{{ url_for('logout') }}" class="logout-button">Cerrar sesión</a>
+		</div>
+	</nav>
+	<main class="management-page">
+		<div class="dashboard-header management-header">
+			<div>
+				<p class="small-title">PANEL DE GESTIÓN</p>
+				<h1>Gestión de reportes</h1>
+				<p class="description">Consulta, revisa y administra los problemas informados.</p>
+			</div>
+			<a class="button secondary" href="{{ url_for('dashboard') }}"><i class="bi bi-arrow-left"></i> Volver al panel</a>
+		</div>
+		{% if error or request.args.get('error') %}<div class="form-notice error"><i class="bi bi-exclamation-circle"></i><div><strong>Error</strong><p>{{ error or request.args.get('error') }}</p></div></div>{% endif %}
+		{% if request.args.get('usuario_creado') %}<div class="form-notice success"><i class="bi bi-check-circle"></i><div><strong>Usuario creado</strong><p>La cuenta se creó correctamente.</p></div></div>{% endif %}
+		{% if request.args.get('usuario_eliminado') %}<div class="form-notice success"><i class="bi bi-check-circle"></i><div><strong>Usuario desactivado</strong><p>Sus reportes y su historial se conservaron.</p></div></div>{% endif %}
+		{% if request.args.get('establecimiento_creado') %}<div class="form-notice success"><i class="bi bi-check-circle"></i><div><strong>Establecimiento creado</strong><p>El establecimiento está listo para administrarse.</p></div></div>{% endif %}
+
+		{% if puede_administrar and not establecimiento_fijo %}
+		<form class="filter-bar" action="{{ url_for('seleccionar_establecimiento') }}" method="POST">
+			<label for="establecimiento_id">Filtrar por establecimiento</label>
+			<select id="establecimiento_id" name="establecimiento_id" onchange="this.form.submit()">
+				<option value="">Todos los establecimientos</option>
+				{% for establecimiento in establecimientos %}
+				{% if establecimiento.activo %}
+				<option value="{{ establecimiento.id }}" {{ 'selected' if establecimiento.id == establecimiento_actual else '' }}>{{ establecimiento.nombre }}</option>
+				{% endif %}
+				{% endfor %}
+			</select>
+			<input type="hidden" name="volver" value="{{ url_for('admin_panel') }}">
+			<noscript><button class="button" type="submit">Aplicar</button></noscript>
+		</form>
+		{% endif %}
+
+		<section class="stats-grid management-stats">
+			<div class="stat-card"><span class="management-stat-icon blue"><i class="bi bi-file-earmark-text"></i></span><strong>{{ resumen.total or 0 }}</strong><span>Reportes</span></div>
+			<div class="stat-card"><span class="management-stat-icon yellow"><i class="bi bi-search"></i></span><strong>{{ resumen.pendientes or 0 }}</strong><span>Pendientes</span></div>
+			<div class="stat-card"><span class="management-stat-icon orange"><i class="bi bi-tools"></i></span><strong>{{ resumen.en_proceso or 0 }}</strong><span>En proceso</span></div>
+			<div class="stat-card"><span class="management-stat-icon green"><i class="bi bi-check-circle"></i></span><strong>{{ resumen.resueltos or 0 }}</strong><span>Resueltos</span></div>
+			<div class="stat-card warning"><span class="management-stat-icon yellow"><i class="bi bi-exclamation-circle"></i></span><strong>{{ resumen.por_revisar or 0 }}</strong><span>Por revisar</span></div>
+		</section>
+		<section class="panel">
+			<div class="management-section-heading">
+				<div><p class="small-title">ACTIVIDAD</p><h2>Reportes</h2></div>
+				<p>Abre cada reporte para revisar su evidencia y actualizar la gestión.</p>
+			</div>
+			<div class="table-wrap"><table>
+				<thead><tr><th>Reporte</th><th>Estudiante</th><th>Estado / prioridad</th><th>Revisión</th><th>Responsable</th><th>Acciones</th></tr></thead>
+				<tbody>
+					{% for reporte in reportes %}
+					<tr>
+						<td><a href="{{ url_for('reporte', reporte_id=reporte.id) }}"><strong>#{{ reporte.id }} · {{ reporte.titulo }}</strong></a><small>{{ reporte.establecimiento_nombre }} · {{ reporte.ubicacion }}</small></td>
+						<td>{{ reporte.autor_nombre or 'Cuenta desactivada' }}</td>
+						<td>{{ reporte.estado|replace('_', ' ')|title }} · {{ reporte.prioridad|title }}</td>
+						<td><span class="badge {{ 'warning' if reporte.moderacion_estado == 'pendiente' else '' }}">{{ reporte.moderacion_estado|title }}</span></td>
+						<td>{{ reporte.responsable_nombre or 'Sin asignar' }}</td>
+						<td><div class="action-row"><a class="button secondary" href="{{ url_for('reporte', reporte_id=reporte.id) }}">Ver evidencia</a><form action="{{ url_for('eliminar_reporte', reporte_id=reporte.id) }}" method="POST" onsubmit="return confirm('¿Eliminar este reporte?')"><button class="button danger" type="submit">Borrar</button></form></div></td>
+					</tr>
+					{% else %}<tr><td colspan="6">No hay reportes para este filtro.</td></tr>{% endfor %}
+				</tbody>
+			</table></div>
+		</section>
+
+		{% if puede_administrar %}
+		<section class="panel">
+			<div class="management-section-heading">
+				<div><p class="small-title">CUENTAS Y PERMISOS</p><h2>Administrar usuarios</h2></div>
+				<p>Crea, consulta o desactiva cuentas del establecimiento.</p>
+			</div>
+			<form class="management-form" action="{{ url_for('crear_usuario') }}" method="POST">
+				<label>Nombre<input name="nombre" maxlength="100" required></label>
+				<label>RUT<input name="rut" placeholder="12.345.678-5" required></label>
+				<label>Correo<input type="email" name="correo" maxlength="150" required></label>
+				<label>Rol<select name="rol" required><option value="estudiante">Estudiante</option><option value="funcionario">Funcionario</option><option value="administrador">Administrador</option></select></label>
+				<label>Establecimiento<select name="establecimiento_id" required>{% for establecimiento in establecimientos %}{% if establecimiento.activo %}<option value="{{ establecimiento.id }}">{{ establecimiento.nombre }}</option>{% endif %}{% endfor %}</select></label>
+				<label>Contraseña temporal<input type="password" name="contrasena" minlength="8" required></label>
+				<button class="button" type="submit"><i class="bi bi-person-plus"></i> Crear usuario</button>
+			</form>
+			<div class="table-wrap"><table>
+				<thead><tr><th>Usuario</th><th>RUT</th><th>Rol</th><th>Establecimiento</th><th>Estado</th><th></th></tr></thead>
+				<tbody>{% for usuario in usuarios %}
+					<tr><td>{{ usuario.nombre }}<small>{{ usuario.correo }}</small></td><td>{{ usuario.rut or 'Sin RUT' }}</td><td>{{ usuario.rol|title }}</td><td>{{ usuario.establecimiento_nombre or '—' }}</td><td>{{ 'Activo' if usuario.activo else 'Desactivado' }}</td><td>
+						{% if usuario.id != session['usuario_id'] or not usuario.activo %}<form action="{{ url_for('cambiar_estado_usuario', usuario_id=usuario.id) }}" method="POST" onsubmit="return confirm('¿{{ 'Desactivar' if usuario.activo else 'Reactivar' }} esta cuenta? Sus reportes se conservarán.')"><button class="button {{ 'danger' if usuario.activo else 'secondary' }}" type="submit">{{ 'Eliminar' if usuario.activo else 'Reactivar' }}</button></form>{% endif %}
+					</td></tr>
+				{% else %}<tr><td colspan="6">No hay usuarios para mostrar.</td></tr>{% endfor %}</tbody>
+			</table></div>
+		</section>
+
+		{% if puede_gestionar_establecimientos %}
+		<section class="panel">
+			<div class="management-section-heading">
+				<div><p class="small-title">ORGANIZACIÓN</p><h2>Establecimientos</h2></div>
+				<p>Administra los establecimientos disponibles en RBLink.</p>
+			</div>
+			<form class="management-form" action="{{ url_for('crear_establecimiento') }}" method="POST">
+				<label>Nombre<input name="nombre" maxlength="150" required></label>
+				<label>Descripción<input name="descripcion" maxlength="500"></label>
+				<button class="button" type="submit"><i class="bi bi-plus-lg"></i> Agregar establecimiento</button>
+			</form>
+			<div class="table-wrap"><table>
+				<thead><tr><th>Establecimiento</th><th>Estado</th><th></th></tr></thead>
+				<tbody>{% for establecimiento in establecimientos %}
+					<tr><td>{{ establecimiento.nombre }}</td><td>{{ 'Activo' if establecimiento.activo else 'Inactivo' }}</td><td>
+						<form action="{{ url_for('cambiar_estado_establecimiento', establecimiento_id=establecimiento.id) }}" method="POST"><button class="button secondary" type="submit">{{ 'Desactivar' if establecimiento.activo else 'Activar' }}</button></form>
+					</td></tr>
+				{% endfor %}</tbody>
+			</table></div>
+		</section>
+		{% endif %}
+		{% endif %}
+	</main>
+	<footer>RBLink 2026&copy; — Todos los derechos reservados</footer>
+</body>
+</html>

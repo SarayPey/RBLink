@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Editar reporte #{{ reporte.id }} | RBLink</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/management.css') }}">
+</head>
+<body>
+	<main class="management-page">
+		<a class="back-link" href="{{ url_for('reporte', reporte_id=reporte.id) }}">← Volver al reporte</a>
+		<section class="panel">
+			<h1>Editar reporte #{{ reporte.id }}</h1>
+			{% if error %}<p class="notice error">{{ error }}</p>{% endif %}
+			<form method="POST" enctype="multipart/form-data" class="management-form">
+				<label>Título<input name="titulo" maxlength="150" value="{{ reporte.titulo }}" required></label>
+				<label>Categoría
+					<select name="categoria" required>
+						{% for categoria in ['Infraestructura', 'Electricidad', 'Agua y sanitarios', 'Mobiliario', 'Limpieza', 'Seguridad', 'Otro'] %}
+						<option value="{{ categoria }}" {{ 'selected' if reporte.categoria == categoria else '' }}>{{ categoria }}</option>
+						{% endfor %}
+					</select>
+				</label>
+				<label>Ubicación<input name="ubicacion" maxlength="200" value="{{ reporte.ubicacion }}" required></label>
+				<label class="full-width">Descripción<textarea name="descripcion" required>{{ reporte.descripcion }}</textarea></label>
+				{% if imagenes %}
+				<div class="full-width"><strong>Fotografías existentes (marca las que quieres quitar)</strong>
+					<div class="evidence-grid">
+						{% for imagen in imagenes %}
+						<label class="image-choice"><img src="{{ url_for('evidencia_reporte', reporte_id=reporte.id, imagen_id=imagen.id) }}" alt="Evidencia"><span><input type="checkbox" name="eliminar_imagen" value="{{ imagen.id }}"> Eliminar</span></label>
+						{% endfor %}
+					</div>
+				</div>
+				{% endif %}
+				<label class="full-width">Agregar fotografías<input type="file" name="imagenes" accept=".jpg,.jpeg,.png,image/jpeg,image/png" multiple></label>
+				<p class="full-width">Al guardar, las evidencias quedan pendientes de una nueva revisión manual.</p>
+				<button class="button" type="submit">Guardar cambios</button>
+			</form>
+		</section>
+	</main>
+</body>
+</html>

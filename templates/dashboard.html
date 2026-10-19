@@ -9,6 +9,7 @@
 	<link rel='stylesheet' href='{{ url_for('static', filename='css/animations.css') }}'>
 	<link rel='stylesheet' href='{{ url_for('static', filename='css/dashboard.css') }}'>
 	<link rel='stylesheet' href='{{ url_for('static', filename='css/style.css') }}'>
+	<link rel='stylesheet' href='{{ url_for('static', filename='css/management.css') }}'>
 	<link rel='stylesheet' href='../static/css/animations.css'>
 	<link rel='stylesheet' href='../static/css/colorset.css'>
 	<link rel='stylesheet' href='../static/css/dashboard.css'>
@@ -21,6 +22,7 @@
 		</a>
 		<div class='nav-right'>
 			<span class='welcome'>Hola, {{ nombre }}</span>
+			{% if rol in ['administrador', 'funcionario'] %}<a href='{{ url_for('admin_panel') }}' class='profile-button'>Gestión</a>{% endif %}
 			<a href='{{ url_for('perfil') }}' class='profile-button'>Mi perfil</a>
 			<a href='{{ url_for('logout') }}' class='logout-button'>Cerrar sesión</a>
 		</div>
@@ -29,27 +31,43 @@
 	<main class='dashboard'>
 		<section class='dashboard-header'>
 			<div>
-				<p class='small-title'>PANEL DE USUARIO</p>
+				<p class='small-title'>{{ 'PANEL DE GESTIÓN' if rol in ['administrador', 'funcionario'] else 'PANEL DE USUARIO' }}</p>
 				<h1>Hola, {{ nombre }}</h1>
-				<p class='description'>Revisa tus reportes o registra un nuevo problema.</p>
+				<p class='description'>{{ 'Reportes del establecimiento y tareas pendientes de revisión.' if rol in ['administrador', 'funcionario'] else 'Revisa tus reportes o registra un nuevo problema.' }}{% if establecimiento_actual_nombre %} · Establecimiento: {{ establecimiento_actual_nombre }}{% endif %}</p>
 			</div>
-			<a href='{{ url_for('nuevo_reporte') }}' class='new-report'>
+			{% if rol == 'estudiante' %}<a href='{{ url_for('nuevo_reporte') }}' class='new-report'>
 				<i class='bi bi-plus-lg'></i>
 				Nuevo reporte
-			</a>
+			</a>{% endif %}
 		</section>
+		{% if rol == 'administrador' and not establecimiento_fijo %}
+		<form class='filter-bar' action='{{ url_for('seleccionar_establecimiento') }}' method='POST'>
+			<label for='establecimiento_id'>Establecimiento activo</label>
+			<select id='establecimiento_id' name='establecimiento_id' onchange='this.form.submit()'>
+				<option value='' {{ 'selected' if not establecimiento_actual else '' }}>Todos los establecimientos</option>
+				{% for establecimiento in establecimientos %}
+				{% if establecimiento.activo %}
+				<option value='{{ establecimiento.id }}' {{ 'selected' if establecimiento.id == establecimiento_actual else '' }}>{{ establecimiento.nombre }}</option>
+				{% endif %}
+				{% endfor %}
+			</select>
+			<input type='hidden' name='volver' value='{{ url_for('dashboard') }}'>
+			<noscript><button type='submit'>Aplicar</button></noscript>
+		</form>
+		{% endif %}
 
 		<section class='cards'>
-			<div class='card'><div class='card-icon blue'><i class='bi bi-file-earmark-text'></i></div><div><h3>{{ total }}</h3><p>Reportes realizados</p></div></div>
-			<div class='card'><div class='card-icon yellow'><i class='bi bi-search'></i></div><div><h3>{{ en_revision }}</h3><p>En revisión</p></div></div>
-			<div class='card'><div class='card-icon orange'><i class='bi bi-tools'></i></div><div><h3>{{ en_proceso }}</h3><p>En proceso</p></div></div>
-			<div class='card'><div class='card-icon green'><i class='bi bi-check-circle'></i></div><div><h3>{{ resueltos }}</h3><p>Resueltos</p></div></div>
+			<div class='card'><div class='card-icon blue'><i class='bi bi-file-earmark-text'></i></div><div><h3>{{ resumen.total }}</h3><p>{{ 'Reportes visibles' if rol in ['administrador', 'funcionario'] else 'Mis reportes' }}</p></div></div>
+			<div class='card'><div class='card-icon yellow'><i class='bi bi-search'></i></div><div><h3>{{ resumen.en_revision }}</h3><p>En revisión</p></div></div>
+			<div class='card'><div class='card-icon orange'><i class='bi bi-tools'></i></div><div><h3>{{ resumen.en_proceso }}</h3><p>En proceso</p></div></div>
+			<div class='card'><div class='card-icon green'><i class='bi bi-check-circle'></i></div><div><h3>{{ resumen.resueltos }}</h3><p>Resueltos</p></div></div>
 		</section>
+		{% if rol in ['administrador', 'funcionario'] %}<p class='notice warning'>{{ resumen.por_revisar }} reporte(s) esperan revisión manual de su contenido y fotografías.</p>{% endif %}
 		{% if error %}<div class='form-notice'><i class='bi bi-exclamation-circle'></i><div><strong>Error</strong><p>{{ error }}</p></div></div>{% endif %}
 
 		<section class='recent-section'>
 			<div class='section-title'>
-				<div><p class='small-title'>ACTIVIDAD</p><h2>Mis reportes recientes</h2></div>
+				<div><p class='small-title'>ACTIVIDAD</p><h2>{{ 'Reportes recientes' if rol in ['administrador', 'funcionario'] else 'Mis reportes recientes' }}</h2></div>
 				<a href='{{ url_for('mis_reportes') }}'>Ver todos <i class='bi bi-chevron-right'></i></a>
 			</div>
 
@@ -61,6 +79,7 @@
 						<div class='report-info'>
 							<h3>{{ reporte.titulo }}</h3>
 							<p><i class='bi bi-geo-alt'></i> {{ reporte.ubicacion }} <span>•</span> {{ reporte.categoria }}</p>
+							{% if rol in ['administrador', 'funcionario'] %}<span class='date'>{{ reporte.autor_nombre or 'Cuenta desactivada' }} · {{ reporte.establecimiento_nombre }}</span>{% endif %}
 							<span class='date'>Enviado el {{ reporte.fecha_creacion.strftime('%d/%m/%Y %H:%M') }}</span>
 						</div>
 						<div class='report-status {{ 'review' if reporte.estado == 'en_revision' else 'process' if reporte.estado == 'en_proceso' else 'solved' if reporte.estado == 'resuelto' else '' }}'>
@@ -70,7 +89,7 @@
 					</article>
 					{% endfor %}
 				{% else %}
-					<p>No tienes reportes todavía. Crea tu primer reporte.</p>
+					<p>{{ 'No hay reportes para este establecimiento.' if rol in ['administrador', 'funcionario'] else 'No tienes reportes todavía. Crea tu primer reporte.' }}</p>
 				{% endif %}
 			</div>
 		</section>
@@ -78,8 +97,8 @@
 		<section class='quick-actions'>
 			<p class='small-title'>ACCIONES RÁPIDAS</p>
 			<div class='quick-grid'>
-				<a href='{{ url_for('nuevo_reporte') }}' class='quick-card'><span><i class='bi bi-plus-square'></i></span><div><h3>Nuevo reporte</h3><p>Informa un problema del colegio</p></div><strong><i class='bi bi-chevron-right'></i></strong></a>
-				<a href='{{ url_for('mis_reportes') }}' class='quick-card'><span><i class='bi bi-list-check'></i></span><div><h3>Mis reportes</h3><p>Revisa todos tus reportes</p></div><strong><i class='bi bi-chevron-right'></i></strong></a>
+				{% if rol == 'estudiante' %}<a href='{{ url_for('nuevo_reporte') }}' class='quick-card'><span><i class='bi bi-plus-square'></i></span><div><h3>Nuevo reporte</h3><p>Informa un problema del colegio</p></div><strong><i class='bi bi-chevron-right'></i></strong></a>{% endif %}
+				<a href='{{ url_for('mis_reportes') }}' class='quick-card'><span><i class='bi bi-list-check'></i></span><div><h3>{{ 'Gestión de reportes' if rol in ['administrador', 'funcionario'] else 'Mis reportes' }}</h3><p>{{ 'Consulta los reportes de tu establecimiento' if rol in ['administrador', 'funcionario'] else 'Revisa todos tus reportes' }}</p></div><strong><i class='bi bi-chevron-right'></i></strong></a>
 				<a href='{{ url_for('perfil') }}' class='quick-card'><span><i class='bi bi-person'></i></span><div><h3>Mi perfil</h3><p>Consulta tus datos personales</p></div><strong><i class='bi bi-chevron-right'></i></strong></a>
 			</div>
 		</section>

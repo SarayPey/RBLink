@@ -8,6 +8,7 @@
 	<link rel='stylesheet' href='{{ url_for('static', filename='css/colorset.css') }}'>
 	<link rel='stylesheet' href='{{ url_for('static', filename='css/login.css') }}'>
 	<link rel='stylesheet' href='{{ url_for('static', filename='css/style.css') }}'>
+	<link rel='stylesheet' href='{{ url_for('static', filename='css/management.css') }}'>
 	<link rel='stylesheet' href='../static/css/colorset.css'>
 	<link rel='stylesheet' href='../static/css/animations.css'>
 	<link rel='stylesheet' href='../static/css/login.css'>
@@ -32,20 +33,19 @@
 			{% if registrado %}
 				<p class='success-msg'>Cuenta creada correctamente. Ahora puedes iniciar sesión.</p>
 			{% endif %}
-
 			{% if error %}
 				<p class='error-msg'>{{ error }}</p>
 			{% endif %}
 
 			<form action='{{ url_for('login') }}' method='POST' class='login-form'>
 				<div class='campo'>
-					<p>Correo institucional:</p>
-					<input type='email' name='correo' class='input' placeholder='usuario@institucion.cl' required>
+					<p>RUT o correo institucional:</p>
+					<input type='text' name='identificador' class='input' placeholder='12.345.678-5' autocomplete='username' required>
 				</div>
 
 				<div class='campo'>
 					<p>Contraseña:</p>
-					<input type='password' name='contrasena' class='input' placeholder='Ingresa tu contraseña' required>
+					<input type='password' name='contrasena' class='input' placeholder='Ingresa tu contraseña' autocomplete='current-password' required>
 				</div>
 
 				<button class='btniniciar' type='submit'>Iniciar sesión</button>

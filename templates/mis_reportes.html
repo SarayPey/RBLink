@@ -9,6 +9,7 @@
 	<link rel='stylesheet' href='{{ url_for('static', filename='css/animations.css') }}'>
 	<link rel='stylesheet' href='{{ url_for('static', filename='css/dashboard.css') }}'>
 	<link rel='stylesheet' href='{{ url_for('static', filename='css/style.css') }}'>
+	<link rel='stylesheet' href='{{ url_for('static', filename='css/management.css') }}'>
 	<link rel='stylesheet' href='../static/css/animations.css'>
 	<link rel='stylesheet' href='../static/css/colorset.css'>
 	<link rel='stylesheet' href='../static/css/dashboard.css'>
@@ -36,6 +37,9 @@
 					<div class='report-info'><h3>{{ reporte.titulo }}</h3><p><i class='bi bi-geo-alt'></i> {{ reporte.ubicacion }} <span>•</span> {{ reporte.categoria }}</p><span class='date'>{{ reporte.fecha_creacion.strftime('%d/%m/%Y %H:%M') }}</span></div>
 					<div class='report-status {{ 'review' if reporte.estado == 'en_revision' else 'process' if reporte.estado == 'en_proceso' else 'solved' if reporte.estado == 'resuelto' else '' }}'>{{ reporte.estado|replace('_', ' ')|title }}</div>
 					<a href='{{ url_for('reporte', reporte_id=reporte.id) }}' class='view-report'>Ver <i class='bi bi-chevron-right'></i></a>
+					<form action='{{ url_for('eliminar_reporte', reporte_id=reporte.id) }}' method='POST' onsubmit="return confirm('¿Eliminar tu reporte?')">
+						<button class='button danger' type='submit'>Eliminar</button>
+					</form>
 				</article>
 				{% endfor %}
 			{% else %}

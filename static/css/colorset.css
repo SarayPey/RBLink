@@ -108,7 +108,7 @@ input::placeholder, textarea::placeholder {
 	color: var(--rojo);
 }
 
-section table {
+.landing-page section table {
 	background-color: var(--rojop);
 }
 

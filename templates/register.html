@@ -1,74 +1,71 @@
 <!DOCTYPE html>
-<html lang='es'>
+<html lang="es">
 <head>
-	<meta charset='UTF-8'>
-	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
-	<title>RBLink | Registro</title>
-	<link rel='stylesheet' href='{{ url_for('static', filename='css/colorset.css') }}'>
-	<link rel='stylesheet' href='{{ url_for('static', filename='css/animations.css') }}'>
-	<link rel='stylesheet' href='{{ url_for('static', filename='css/register.css') }}'>
-	<link rel='stylesheet' href='{{ url_for('static', filename='css/style.css') }}'>
-	<link rel='stylesheet' href='../static/css/colorset.css'>
-	<link rel='stylesheet' href='../static/css/animations.css'>
-	<link rel='stylesheet' href='../static/css/register.css'>
-	<link rel='stylesheet' href='../static/css/style.css'>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>RBLink | Crear cuenta</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/colorset.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
 	<nav>
-		<a href='{{ url_for('index') }}' class='name'><span class='rblink'><span class='r'>R</span><span class='b'>B</span><span class='link'>Link</span></span></a>
+		<a href="{{ url_for('index') }}" class="name"><span class="rblink"><span class="r">R</span><span class="b">B</span><span class="link">Link</span></span></a>
 		<div>
-			<a href='{{ url_for('index') }}'>Inicio</a>
-			<a href='{{ url_for('login') }}'>Iniciar sesión</a>
+			<a href="{{ url_for('index') }}">Inicio</a>
+			<a href="{{ url_for('login') }}">Iniciar sesión</a>
 		</div>
 	</nav>
 
 	<section>
-		<div class='container'>
-			<div class='titulo'>
+		<div class="container">
+			<div class="titulo">
 				<h1>Crear cuenta</h1>
-				<p>Únete a RBLink</p>
+				<p>Únete a RBLink y selecciona tu establecimiento</p>
 			</div>
 
 			{% if error %}
-				<p class='error-msg'>{{ error }}</p>
+			<p class="error-msg">{{ error }}</p>
 			{% endif %}
 
-			<form action='{{ url_for('registro') }}' method='POST' class='registro-form'>
-				<div class='campo'>
+			<form action="{{ url_for('registro') }}" method="POST" class="registro-form">
+				<div class="campo">
 					<p>Nombre completo:</p>
-					<input type='text' name='nombre' class='input' placeholder='Ingresa tu nombre' required>
+					<input type="text" name="nombre" class="input" placeholder="Ingresa tu nombre" maxlength="100" autocomplete="name" required>
 				</div>
 
-				<div class='campo'>
+				<div class="campo">
+					<p>RUT:</p>
+					<input type="text" name="rut" class="input" placeholder="12.345.678-5" autocomplete="off" required>
+				</div>
+
+				<div class="campo">
 					<p>Correo institucional:</p>
-					<input type='email' name='correo' class='input' placeholder='usuario@institucion.cl' required>
+					<input type="email" name="correo" class="input" placeholder="usuario@institucion.cl" maxlength="150" autocomplete="email" required>
 				</div>
 
-				<div class='campo'>
-					<p>Tipo de usuario:</p>
-					<select name='rol' class='input select' required>
-						<option value='' selected disabled>Selecciona una opción</option>
-						<option value='estudiante'>Estudiante</option>
-						<option value='funcionario'>Funcionario</option>
-						<option value='administrador'>Administrador</option>
+				<div class="campo">
+					<p>Establecimiento:</p>
+					<select name="establecimiento_id" class="input select" required>
+						<option value="" selected disabled>Selecciona tu establecimiento</option>
+						{% for establecimiento in establecimientos %}
+						<option value="{{ establecimiento.id }}">{{ establecimiento.nombre }}</option>
+						{% endfor %}
 					</select>
 				</div>
 
-				<div class='campo'>
+				<div class="campo">
 					<p>Contraseña:</p>
-					<input type='password' name='contrasena' class='input' placeholder='Mínimo 6 caracteres' required>
+					<input type="password" name="contrasena" class="input" placeholder="Mínimo 8 caracteres" minlength="8" autocomplete="new-password" required>
 				</div>
 
-				<div class='campo'>
-					<p>Confirmar contraseña:</p>
-					<input type='password' name='confirmar_contrasena' class='input' placeholder='Repite tu contraseña' required>
-				</div>
-
-				<button class='btnregistro' type='submit'>Registrarse</button>
+				<button class="btnregistro" type="submit">Registrarme</button>
 			</form>
 
-			<div class='registro'>
-				<p>¿Ya tienes una cuenta? <a href='{{ url_for('login') }}'>Inicia sesión</a></p>
+			<div class="registro">
+				<p>¿Ya tienes una cuenta? <a href="{{ url_for('login') }}">Inicia sesión</a></p>
 			</div>
 		</div>
 	</section>

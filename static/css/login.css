@@ -105,6 +105,15 @@ h1 {
 	text-align: center;
 }
 
+.success-msg {
+	width: 100%;
+	margin: 0 0 1rem;
+	color: #16713a;
+	font-size: 0.95rem;
+	font-weight: 700;
+	text-align: center;
+}
+
 .registro {
 	display: flex;
 	justify-content: center;

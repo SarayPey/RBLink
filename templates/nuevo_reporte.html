@@ -22,9 +22,9 @@
 	<a href='{{ url_for('dashboard') }}' class='name'><span class='rblink'><span class='r'>R</span><span
 				class='b'>B</span><span class='link'>Link</span></span></a>
 		<div class='nav-right'>
-			<span class='welcome'><i class='bi bi-person-circle'></i> Hola, {{ session['nombre'] }}</span>
-			<a href='{{ url_for('perfil') }}' class='profile-button'><i class='bi bi-person'></i> Perfil</a>
-			<a href='{{ url_for('logout') }}' class='logout-button'><i class='bi bi-box-arrow-right'></i> Salir</a>
+			<span class='welcome'>Hola, {{ session['nombre'] }}</span>
+			<a href='{{ url_for('perfil') }}' class='profile-button'>Perfil</a>
+			<a href='{{ url_for('logout') }}' class='logout-button'>Salir</a>
 		</div>
 	</nav>
 
@@ -92,11 +92,11 @@
 						<div class='form-icon orange'><i class='bi bi-camera'></i></div>
 						<div><h2>Fotografía</h2><p>Agrega una imagen como evidencia del problema.</p></div>
 					</div>
-					<label for='imagen' class='image-upload'>
+					<label for='imagenes' class='image-upload'>
 						<i class='bi bi-cloud-arrow-up'></i>
-						<strong>Seleccionar fotografía</strong>
-						<span>JPG, JPEG o PNG</span>
-						<input type='file' id='imagen' name='imagen' accept='image/png, image/jpeg'>
+						<strong>Seleccionar fotografías</strong>
+						<span>Una o varias imágenes JPG, JPEG o PNG (máximo 5 MB en total)</span>
+						<input type='file' id='imagenes' name='imagenes' accept='image/png, image/jpeg' multiple>
 					</label>
 				</div>
 

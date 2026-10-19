@@ -1,44 +1,189 @@
 <!DOCTYPE html>
-<html lang='es'>
+<html lang="es">
 <head>
-	<meta charset='UTF-8'>
-	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Reporte #{{ reporte.id }} | RBLink</title>
-	<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css'>
-	<link rel='stylesheet' href='{{ url_for('static', filename='css/colorset.css') }}'>
-	<link rel='stylesheet' href='{{ url_for('static', filename='css/animations.css') }}'>
-	<link rel='stylesheet' href='{{ url_for('static', filename='css/dashboard.css') }}'>
-	<link rel='stylesheet' href='{{ url_for('static', filename='css/style.css') }}'>
-	<link rel='stylesheet' href='../static/css/animations.css'>
-	<link rel='stylesheet' href='../static/css/colorset.css'>
-	<link rel='stylesheet' href='../static/css/dashboard.css'>
-	<link rel='stylesheet' href='../static/css/style.css'>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/colorset.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/management.css') }}">
 </head>
 <body>
-<nav class='navbar'>
-	<a href='{{ url_for('dashboard') }}' class='name'><span class='rblink'><span class='r'>R</span><span class='b'>B</span><span class='link'>Link</span></span></a>
-	<div class='nav-right'><a href='{{ url_for('perfil') }}' class='profile-button'>Mi perfil</a><a href='{{ url_for('logout') }}' class='logout-button'>Cerrar sesión</a></div>
-</nav>
-<main class='dashboard'>
-	<section class='dashboard-header'>
-		<div><p class='small-title'>REPORTE #{{ '%03d'|format(reporte.id) }}</p><h1>{{ reporte.titulo }}</h1><p class='description'>{{ reporte.categoria }} · {{ reporte.ubicacion }}</p></div>
-		<a href='{{ url_for('mis_reportes') }}' class='new-report'><i class='bi bi-arrow-left'></i> Volver</a>
-	</section>
-	<section class='recent-section'>
-		<div class='report-info'>
-			<h2>Descripción</h2>
-			<p>{{ reporte.descripcion }}</p>
-			<br>
-			<p><strong>Prioridad:</strong> {{ reporte.prioridad|title }}</p>
-			<p><strong>Estado:</strong> {{ reporte.estado|replace('_', ' ')|title }}</p>
-			<p><strong>Fecha:</strong> {{ reporte.fecha_creacion.strftime('%d/%m/%Y %H:%M') }}</p>
-			{% if reporte.imagen %}
-				<p><strong>Fotografía:</strong></p>
-				<img src='{{ url_for('uploaded_file', filename=reporte.imagen) }}' alt='Evidencia del reporte' style='max-width: 100%; border-radius: 12px; margin-top: 10px;'>
-			{% endif %}
+	<nav class="navbar">
+		<a href="{{ url_for('dashboard') }}" class="name">
+			<span class="rblink"><span class="r">R</span><span class="b">B</span><span class="link">Link</span></span>
+		</a>
+		<div class="nav-right">
+			<span class="welcome"><i class="bi bi-person-circle"></i> Hola, {{ session['nombre'] }}</span>
+			{% if session['rol'] in ['administrador', 'funcionario'] %}<a href="{{ url_for('admin_panel') }}" class="profile-button"><i class="bi bi-clipboard-data"></i> Gestión</a>{% endif %}
+			<a href="{{ url_for('perfil') }}" class="profile-button"><i class="bi bi-person"></i> Perfil</a>
+			<a href="{{ url_for('logout') }}" class="logout-button"><i class="bi bi-box-arrow-right"></i> Salir</a>
 		</div>
-	</section>
-</main>
-<footer>RBLink 2026© — Todos los derechos reservados</footer>
+	</nav>
+
+	<main class="report-detail-page">
+		<header class="report-page-heading">
+			<a class="back-link" href="{{ url_for('admin_panel') if session['rol'] in ['administrador', 'funcionario'] else url_for('lista_reportes') }}">
+				<i class="bi bi-arrow-left"></i> Volver a reportes
+			</a>
+			<div class="report-page-title">
+				<div>
+					<p class="small-title">DETALLE DEL REPORTE · #{{ reporte.id }}</p>
+					<h1>{{ reporte.titulo }}</h1>
+					<p class="description"><i class="bi bi-building"></i> {{ reporte.establecimiento_nombre }}</p>
+				</div>
+				<span class="report-status {{ 'review' if reporte.estado in ['pendiente', 'en_revision'] else 'process' if reporte.estado == 'en_proceso' else 'solved' }}">
+					{{ reporte.estado|replace('_', ' ')|title }}
+				</span>
+			</div>
+		</header>
+
+		{% if creado %}
+		<div class="form-notice success">
+			<i class="bi bi-check-circle"></i>
+			<div><strong>Reporte enviado</strong><p>Queda pendiente de revisión del establecimiento.</p></div>
+		</div>
+		{% endif %}
+		{% if request.args.get('error') %}
+		<div class="form-notice error">
+			<i class="bi bi-exclamation-circle"></i>
+			<div><strong>No se pudo completar la acción</strong><p>{{ request.args.get('error') }}</p></div>
+		</div>
+		{% endif %}
+
+		<section class="panel report-main-panel">
+			<div class="detail-section-heading">
+				<span class="detail-icon blue"><i class="bi bi-file-earmark-text"></i></span>
+				<div><h2>Información del reporte</h2><p>Datos y seguimiento del problema informado.</p></div>
+			</div>
+			<div class="report-details-grid">
+				<div><span>Autor</span><strong>{{ reporte.autor_nombre or 'Cuenta desactivada' }}</strong></div>
+				<div><span>RUT</span><strong>{{ reporte.autor_rut or '—' }}</strong></div>
+				<div><span>Categoría</span><strong>{{ reporte.categoria }}</strong></div>
+				<div><span>Ubicación</span><strong><i class="bi bi-geo-alt"></i> {{ reporte.ubicacion }}</strong></div>
+				<div><span>Prioridad</span><strong>{{ reporte.prioridad|title }}</strong></div>
+				<div><span>Responsable</span><strong>{{ reporte.responsable_nombre or 'Sin asignar' }}</strong></div>
+				<div><span>Fecha de envío</span><strong>{{ reporte.fecha_creacion.strftime('%d/%m/%Y %H:%M') }}</strong></div>
+				<div>
+					<span>Revisión de contenido</span>
+					<strong class="moderation-status {{ 'moderation-approved' if reporte.moderacion_estado == 'aprobado' else 'moderation-rejected' if reporte.moderacion_estado == 'rechazado' else '' }}">
+						<i class="bi {{ 'bi-check-circle' if reporte.moderacion_estado == 'aprobado' else 'bi-x-circle' if reporte.moderacion_estado == 'rechazado' else 'bi-hourglass-split' }}"></i>
+						{{ reporte.moderacion_estado|replace('_', ' ')|title }}
+					</strong>
+				</div>
+			</div>
+
+			<div class="report-content-block">
+				<h2><i class="bi bi-card-text"></i> Descripción</h2>
+				<p class="report-description">{{ reporte.descripcion }}</p>
+				{% if reporte.moderacion_observacion %}<p class="notice">{{ reporte.moderacion_observacion }}</p>{% endif %}
+			</div>
+
+			<div class="report-content-block">
+				<h2><i class="bi bi-images"></i> Fotografías y evidencia</h2>
+				{% if imagenes %}
+				<div class="evidence-grid">
+					{% for imagen in imagenes %}
+					<figure class="evidence-item">
+						<img src="{{ url_for('evidencia_reporte', reporte_id=reporte.id, imagen_id=imagen.id) if imagen.id else url_for('evidencia_heredada', reporte_id=reporte.id) }}" alt="Evidencia del reporte {{ reporte.id }}">
+					</figure>
+					{% endfor %}
+				</div>
+				{% else %}
+				<p class="empty-state">Este reporte no contiene fotografías.</p>
+				{% endif %}
+			</div>
+
+			<div class="action-row">
+				{% if puede_editar %}<a class="button" href="{{ url_for('editar_reporte', reporte_id=reporte.id) }}"><i class="bi bi-pencil"></i> Editar reporte</a>{% endif %}
+				{% if puede_eliminar %}
+				<form action="{{ url_for('eliminar_reporte', reporte_id=reporte.id) }}" method="POST" onsubmit="return confirm('¿Eliminar este reporte y sus evidencias?')">
+					<button class="button danger" type="submit"><i class="bi bi-trash"></i> Eliminar reporte</button>
+				</form>
+				{% endif %}
+			</div>
+		</section>
+
+		{% if session['rol'] in ['administrador', 'funcionario'] %}
+		<section class="panel">
+			<div class="detail-section-heading">
+				<span class="detail-icon orange"><i class="bi bi-clipboard-check"></i></span>
+				<div><h2>Gestión y revisión manual</h2><p>Verifica la descripción y las fotografías antes de aprobar el contenido.</p></div>
+			</div>
+			<form action="{{ url_for('gestionar_reporte', reporte_id=reporte.id) }}" method="POST" class="management-form">
+				<label>Estado del reporte
+					<select name="estado">
+						{% for estado in ['pendiente', 'en_revision', 'en_proceso', 'resuelto'] %}
+						<option value="{{ estado }}" {{ 'selected' if reporte.estado == estado else '' }}>{{ estado|replace('_', ' ')|title }}</option>
+						{% endfor %}
+					</select>
+				</label>
+				<label>Revisión del contenido
+					<select name="moderacion_estado">
+						{% for estado in ['pendiente', 'aprobado', 'rechazado'] %}
+						<option value="{{ estado }}" {{ 'selected' if reporte.moderacion_estado == estado else '' }}>{{ estado|title }}</option>
+						{% endfor %}
+					</select>
+				</label>
+				{% if session['rol'] == 'administrador' %}
+				<label>Prioridad
+					<select name="prioridad">
+						{% for prioridad in ['baja', 'media', 'alta'] %}
+						<option value="{{ prioridad }}" {{ 'selected' if reporte.prioridad == prioridad else '' }}>{{ prioridad|title }}</option>
+						{% endfor %}
+					</select>
+				</label>
+				<label>Responsable
+					<select name="responsable_usuario_id">
+						<option value="">Sin asignar</option>
+						{% for responsable in responsables %}
+						<option value="{{ responsable.id }}" {{ 'selected' if reporte.responsable_usuario_id == responsable.id else '' }}>{{ responsable.nombre }}</option>
+						{% endfor %}
+					</select>
+				</label>
+				{% endif %}
+				<label class="full-width">Observación
+					<textarea name="observacion" maxlength="500" placeholder="Motivo de revisión, rechazo o instrucción para el responsable">{{ reporte.moderacion_observacion or '' }}</textarea>
+				</label>
+				<button class="button" type="submit"><i class="bi bi-check2"></i> Guardar gestión</button>
+			</form>
+		</section>
+		{% endif %}
+
+		<section class="panel">
+			<div class="detail-section-heading">
+				<span class="detail-icon blue"><i class="bi bi-chat-dots"></i></span>
+				<div><h2>Comentarios</h2><p>Conversación y coordinación sobre este reporte.</p></div>
+			</div>
+			<div class="activity-list">
+				{% for comentario in comentarios %}
+				<article class="comment">
+					<div class="activity-heading"><strong><i class="bi bi-person-circle"></i> {{ comentario.autor_nombre }} · {{ comentario.autor_rol|title }}</strong><time>{{ comentario.fecha.strftime('%d/%m/%Y %H:%M') }}</time></div>
+					<p>{{ comentario.comentario }}</p>
+				</article>
+				{% else %}<p class="empty-state">Aún no hay comentarios.</p>{% endfor %}
+			</div>
+			<form action="{{ url_for('agregar_comentario', reporte_id=reporte.id) }}" method="POST" class="management-form comment-form">
+				<label class="full-width">Agregar comentario<textarea name="comentario" maxlength="1000" required placeholder="Escribe un comentario..."></textarea></label>
+				<button class="button" type="submit"><i class="bi bi-send"></i> Comentar</button>
+			</form>
+		</section>
+
+		<section class="panel">
+			<div class="detail-section-heading">
+				<span class="detail-icon green"><i class="bi bi-clock-history"></i></span>
+				<div><h2>Historial</h2><p>Registro de cambios y actividad del reporte.</p></div>
+			</div>
+			<ul class="history-list">
+				{% for evento in historial %}
+				<li><div class="activity-heading"><strong>{{ evento.accion|replace('_', ' ')|title }}</strong><time>{{ evento.fecha.strftime('%d/%m/%Y %H:%M') }}</time></div><span class="history-actor">{{ evento.usuario_nombre or 'Usuario eliminado' }}</span>{% if evento.comentario %}<p>{{ evento.comentario }}</p>{% endif %}</li>
+				{% else %}<li class="empty-state">Sin actividad registrada.</li>{% endfor %}
+			</ul>
+		</section>
+	</main>
+	<footer>RBLink 2026&copy; — Todos los derechos reservados</footer>
 </body>
 </html>

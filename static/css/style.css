@@ -122,7 +122,7 @@ img {
 	gap: 2rem;
 }
 
-section table {
+.landing-page section table {
 	margin-top: 12px;
 	border-collapse: collapse;
 	border: 2px solid;
@@ -130,7 +130,8 @@ section table {
 	overflow: hidden;
 }
 
-section th, td {
+.landing-page section th,
+.landing-page section td {
 	border: 2px solid;
 	padding: 8px;
 	text-align: center;
