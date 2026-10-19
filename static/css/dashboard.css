@@ -195,8 +195,12 @@
 	gap: 15px;
 	padding: 20px 5px;
 	border-top: 1px solid #0c0c0c12;
+	transition: background-color .18s ease;
 }
 
+.report:hover {
+	background-color: #f8f9fd;
+}
 .report-number {
 	font-size: 14px;
 	font-weight: 800;

@@ -5,9 +5,9 @@
 	padding: 0;
 	text-decoration: none;
 	box-sizing: border-box;
-	transition: all .2s;
+	transition: none;
 	font-family: roboto, sans-serif;
-	letter-spacing: -0.5px;
+	letter-spacing: 0;
 }
 
 ol, ul {
@@ -37,25 +37,73 @@ body {
 nav {
 	display: flex;
 	justify-content: space-between;
-	padding: 1% 2.5%;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 12px;
+	padding: 12px clamp(16px, 5vw, 72px);
 }
 
 nav .name {
 	display: flex;
 	align-items: center;
-	font-size: 36px;
+	flex-shrink: 0;
+	font-size: 32px;
 }
 
 nav div {
 	display: flex;
-	gap: 24px;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 10px;
 }
 
 nav div a {
-	border-radius: 10px;
+	min-height: 40px;
+	border-radius: 8px;
 	align-content: center;
 	font-size: 16px;
-	padding: 7px;
+	padding: 8px 14px;
+	font-weight: 600;
+}
+
+nav div a,
+button,
+input,
+select,
+textarea,
+.new-report,
+.quick-card,
+.profile-button,
+.logout-button {
+	transition: color .18s ease, background-color .18s ease, border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+	outline: 3px solid var(--celeste2);
+	outline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+	nav {
+		padding: 10px 16px;
+	}
+
+	nav .name {
+		font-size: 27px;
+	}
+
+	nav div {
+		gap: 6px;
+	}
+
+	nav div a {
+		padding: 7px 10px;
+		font-size: 14px;
+	}
 }
 
 .rblink {
@@ -105,4 +153,176 @@ footer {
 	padding: 25px;
 	width: 100%;
 	bottom: 0px;
+}
+
+.landing-page {
+	line-height: 1.6;
+}
+
+.landing-page nav {
+	position: sticky;
+	top: 0;
+	z-index: 10;
+	align-items: center;
+	padding: 10px max(24px, calc((100% - 1120px) / 2));
+}
+
+.landing-page nav .name {
+	font-size: 32px;
+}
+
+.landing-page nav div {
+	align-items: center;
+	gap: 10px;
+}
+
+.landing-page nav div a {
+	min-height: 42px;
+	padding: 8px 16px;
+	border-radius: 6px;
+	font-weight: 600;
+}
+
+.landing-page nav div a:first-child {
+	border-color: #ffffff70;
+}
+
+.landing-page nav div a:last-child {
+	border-color: var(--celeste);
+	background-color: var(--celeste);
+	color: var(--azulfondo);
+}
+
+.landing-page nav div a:hover {
+	transform: translateY(-1px);
+	background-color: var(--azul);
+	color: var(--w);
+}
+
+.landing-page nav a:focus-visible {
+	outline: 3px solid var(--celeste);
+	outline-offset: 3px;
+}
+
+.landing-page header,
+.landing-page section {
+	width: min(1120px, calc(100% - 48px));
+	margin: 28px auto;
+	padding: clamp(24px, 4vw, 48px);
+	border-radius: 8px;
+}
+
+.landing-page header {
+	margin-top: 40px;
+	padding-top: clamp(40px, 7vw, 76px);
+	padding-bottom: clamp(40px, 7vw, 76px);
+	background: linear-gradient(120deg, #ffffff 58%, #e9faff);
+}
+
+.landing-page .nameH {
+	font-size: clamp(48px, 7vw, 76px);
+	line-height: 1.1;
+}
+
+.landing-page header h4 {
+	margin: 16px 0 8px;
+	font-size: 16px;
+	font-weight: 700;
+}
+
+.landing-page header h2 {
+	font-size: clamp(22px, 3vw, 32px);
+}
+
+.landing-page section {
+	box-shadow: 0 2px 12px #0c0c0c12;
+}
+
+.landing-page section > h2 {
+	margin-bottom: 18px;
+	padding-bottom: 12px;
+	border-bottom: 1px solid #e3eaf1;
+	font-size: 26px;
+}
+
+.landing-page .textoIm {
+	align-items: center;
+	justify-content: space-between;
+}
+
+.landing-page .textoIm > img {
+	width: min(40%, 420px);
+	height: auto;
+	object-fit: cover;
+	border-radius: 8px;
+}
+
+.landing-page .texto {
+	flex: 1 1 340px;
+}
+
+.landing-page section table {
+	width: min(58%, 640px);
+	border: 1px solid #e4a2a2;
+	border-collapse: separate;
+	border-spacing: 0;
+	border-radius: 8px;
+	background-color: #fff7f7;
+}
+
+.landing-page section th,
+.landing-page section td {
+	width: auto;
+	padding: 12px 16px;
+	border: 0;
+	border-bottom: 1px solid #f0dada;
+	text-align: left;
+}
+
+.landing-page section th {
+	background-color: #ffe8e8;
+}
+
+.landing-page section tbody tr:last-child td {
+	border-bottom: 0;
+}
+
+.landing-page footer {
+	margin-top: 48px;
+	text-align: center;
+}
+
+@media (max-width: 640px) {
+	.landing-page nav {
+		padding: 10px 16px;
+	}
+
+	.landing-page nav .name {
+		font-size: 27px;
+	}
+
+	.landing-page nav div {
+		gap: 6px;
+	}
+
+	.landing-page nav div a {
+		padding: 7px 10px;
+		font-size: 14px;
+	}
+
+	.landing-page header,
+	.landing-page section {
+		width: calc(100% - 28px);
+		margin: 16px auto;
+		padding: 24px 20px;
+	}
+
+	.landing-page header {
+		margin-top: 20px;
+	}
+
+	.landing-page .textoIm > img,
+	.landing-page section table {
+		width: 100%;
+	}
 }

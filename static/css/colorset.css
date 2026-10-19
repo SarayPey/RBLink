@@ -16,7 +16,7 @@
 }
 
 body {
-	background-color: var(--w);
+	background-color: #f4f7fb;
 }
 
 nav {
@@ -41,13 +41,14 @@ nav a {
 }
 
 nav div a {
-	border: 1px solid;
+	border: 1px solid #ffffff55;
 }
 
 nav div a:hover {
-	border: 1px solid;
+	border-color: var(--azul);
 	background-color: var(--azul);
 	color: var(--w);
+	transform: translateY(-1px);
 }
 
 header, section {
@@ -108,7 +109,7 @@ input::placeholder, textarea::placeholder {
 }
 
 section table {
-	background-color: var(--rojop)
+	background-color: var(--rojop);
 }
 
 footer {

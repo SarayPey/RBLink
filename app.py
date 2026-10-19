@@ -40,7 +40,7 @@ def guardar_imagen(archivo, tipo):
 
 @app.route('/')
 def index():
-	return send_from_directory('.', 'index.html')
+	return send_from_directory(app.root_path, 'index.html')
 
 
 
