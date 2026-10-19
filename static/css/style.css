@@ -18,8 +18,9 @@ li {
 	margin-left: 2rem;
 }
 
-p {
+p, li, table {
 	margin: .5rem 0;
+	font-size: 1.125rem;
 }
 
 .material-symbols-outlined {
@@ -66,23 +67,11 @@ nav div a {
 	font-weight: 600;
 }
 
-nav div a,
-button,
-input,
-select,
-textarea,
-.new-report,
-.quick-card,
-.profile-button,
-.logout-button {
+nav div a, button, input, select, textarea, .new-report, .quick-card, .profile-button, .logout-button {
 	transition: color .18s ease, background-color .18s ease, border-color .18s ease, box-shadow .18s ease, transform .18s ease;
 }
 
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
 	outline: 3px solid var(--celeste2);
 	outline-offset: 3px;
 }
@@ -128,7 +117,7 @@ img {
 
 .textoIm {
 	display: flex;
-	flex-flow: row wrap;
+	flex-direction: row;
 	justify-content: space-around;
 	gap: 2rem;
 }

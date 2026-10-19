@@ -1,40 +1,67 @@
 @keyframes r {
-	from {transform: translate(-15px, -25px) rotate(45deg) scale(0.45); filter: blur(15px);}
+	from {
+		transform: translate(-15px, -25px) rotate(45deg) scale(0.45);
+		filter: blur(15px);
+	}
 }
 
 @keyframes b {
-	from {transform: translate(05px, -25px) rotate(-30deg) scale(0.45); filter: blur(15px);}
+	from {
+		transform: translate(05px, -25px) rotate(-30deg) scale(0.45);
+		filter: blur(15px);
+	}
 }
 
 @keyframes link {
-	from {transform: translate(25px, -25px) rotate(-50deg) scale(0.45); filter: blur(15px);} 
+	from {
+		transform: translate(25px, -25px) rotate(-50deg) scale(0.45);
+		filter: blur(15px);
+	}
 }
 
 @keyframes header {
-	from {transform: translate(-75px, -20px) scale(0.5); filter: brightness(750%) blur(25px);}
+	from {
+		transform: translate(-75px, -20px) scale(0.5);
+		filter: brightness(750%) blur(25px);
+	}
 }
 
+@keyframes images {
+	from {
+		transform: translateY(10px);
+		opacity: 0%;
+	}
+
+	to {
+		transform: translateY(0px);
+		opacity: 100%;
+	}
+}
 
 nav .name {
 	display: inline-block;
 	position: relative;
-	animation: header 1s cubic-bezier(.72,.47,.2,.89);
+	animation: header 1s cubic-bezier(.72, .47, .2, .89);
 }
 
 .nameH .rblink .r {
 	display: inline-block;
 	position: relative;
-	animation: r 1s cubic-bezier(.83,.32,.06,.97);
+	animation: r 1s cubic-bezier(.83, .32, .06, .97);
 }
 
 .nameH .rblink .b {
 	display: inline-block;
 	position: relative;
-	animation: b 1s cubic-bezier(.83,.32,.06,.97);
+	animation: b 1s cubic-bezier(.83, .32, .06, .97);
 }
 
 .nameH .rblink .link {
 	display: inline-block;
 	position: relative;
-	animation: link 1s cubic-bezier(.83,.32,.06,.97);
+	animation: link 1s cubic-bezier(.83, .32, .06, .97);
+}
+
+img {
+	animation: images 2s;
 }
