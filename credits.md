@@ -4,6 +4,6 @@
 **Equipo de CSS:** @SarayPey, @LevinArevaloo7 y @Bignac1o.  
 **Equipo de JavaScript:** @SarayPey y @LevinArevaloo7.  
 **Equipo de Flask:** @LevinArevaloo7.  
-**Equipo de MySQL:** @LevinArevaloo7.  
+**Equipo de MySQL:** @LevinArevaloo7 y @Bignac1o.  
 **Idea visual:** @SarayPey.  
 **IAs sobreexplotadas:** Gemini y ChatGPT.  
