@@ -116,8 +116,7 @@ def login():
 
 			cursor.execute(
 				sql,
-				(correo, contrasena)
-			)
+				(correo, contrasena))
 
 			usuario = cursor.fetchone()
 
@@ -130,10 +129,7 @@ def login():
 
 				return redirect(url_for('dashboard'))
 
-			return render_template(
-				'login.html',
-				error='Correo o contraseña incorrectos.'
-			)
+			return render_template('login.html', error='Correo o contraseña incorrectos.')
 
 		except Exception as error:
 
@@ -150,7 +146,6 @@ def login():
 			conexion.close()
 
 	return render_template('login.html')
-
 
 
 @app.route('/dashboard')
