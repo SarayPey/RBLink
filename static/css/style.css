@@ -10,6 +10,18 @@
 	letter-spacing: -0.5px;
 }
 
+ol, ul {
+	margin: .5rem 0;
+}
+
+li {
+	margin-left: 2rem;
+}
+
+p {
+	margin: .5rem 0;
+}
+
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
@@ -60,11 +72,25 @@ header, section {
 	border-radius: 10px;
 }
 
+img {
+	width: 40%;
+	height: 40%;
+	border-radius: .5rem;
+}
+
+.textoIm {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	gap: 2rem;
+}
+
 section table {
 	margin-top: 12px;
-	border: 2px solid;
 	border-collapse: collapse;
-	border-radius: 1px;
+	border: 2px solid;
+	border-radius: 1rem;
+	overflow: hidden;
 }
 
 section th, td {
