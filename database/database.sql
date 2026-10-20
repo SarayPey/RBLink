@@ -33,24 +33,28 @@ SET @sql = IF(
 	'ALTER TABLE usuarios ADD COLUMN rut VARCHAR(12) NULL',
 	'SELECT 1'
 );
+
 PREPARE stmt FROM @sql; EXECUTE stmt; DEALLOCATE PREPARE stmt;
 SET @sql = IF(
 	(SELECT COUNT(*) FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'usuarios' AND COLUMN_NAME = 'establecimiento_id') = 0,
 	'ALTER TABLE usuarios ADD COLUMN establecimiento_id INT NULL',
 	'SELECT 1'
 );
+
 PREPARE stmt FROM @sql; EXECUTE stmt; DEALLOCATE PREPARE stmt;
 SET @sql = IF(
 	(SELECT COUNT(*) FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'usuarios' AND COLUMN_NAME = 'activo') = 0,
 	'ALTER TABLE usuarios ADD COLUMN activo TINYINT(1) NOT NULL DEFAULT 1',
 	'SELECT 1'
 );
+
 PREPARE stmt FROM @sql; EXECUTE stmt; DEALLOCATE PREPARE stmt;
 SET @sql = IF(
 	(SELECT COUNT(*) FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'usuarios' AND COLUMN_NAME = 'foto_perfil') = 0,
 	'ALTER TABLE usuarios ADD COLUMN foto_perfil VARCHAR(255) NULL',
 	'SELECT 1'
 );
+
 PREPARE stmt FROM @sql; EXECUTE stmt; DEALLOCATE PREPARE stmt;
 
 SET @sql = IF(
@@ -58,6 +62,7 @@ SET @sql = IF(
 	'ALTER TABLE usuarios ADD UNIQUE INDEX uq_usuarios_rut (rut)',
 	'SELECT 1'
 );
+
 PREPARE stmt FROM @sql; EXECUTE stmt; DEALLOCATE PREPARE stmt;
 
 SET @establecimiento_principal = (SELECT id FROM establecimientos ORDER BY id LIMIT 1);
@@ -68,6 +73,7 @@ SET @sql = IF(
 	'ALTER TABLE usuarios ADD CONSTRAINT fk_usuarios_establecimiento FOREIGN KEY (establecimiento_id) REFERENCES establecimientos(id)',
 	'SELECT 1'
 );
+
 PREPARE stmt FROM @sql; EXECUTE stmt; DEALLOCATE PREPARE stmt;
 
 CREATE TABLE IF NOT EXISTS reportes (
@@ -96,24 +102,31 @@ SET @sql = IF(
 	'ALTER TABLE reportes ADD COLUMN establecimiento_id INT NULL',
 	'SELECT 1'
 );
+
 PREPARE stmt FROM @sql; EXECUTE stmt; DEALLOCATE PREPARE stmt;
+
 SET @sql = IF(
 	(SELECT COUNT(*) FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'reportes' AND COLUMN_NAME = 'responsable_usuario_id') = 0,
 	'ALTER TABLE reportes ADD COLUMN responsable_usuario_id INT NULL',
 	'SELECT 1'
 );
+
 PREPARE stmt FROM @sql; EXECUTE stmt; DEALLOCATE PREPARE stmt;
+
 SET @sql = IF(
 	(SELECT COUNT(*) FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'reportes' AND COLUMN_NAME = 'moderacion_estado') = 0,
 	"ALTER TABLE reportes ADD COLUMN moderacion_estado ENUM('pendiente', 'aprobado', 'rechazado') NOT NULL DEFAULT 'pendiente'",
 	'SELECT 1'
 );
+
 PREPARE stmt FROM @sql; EXECUTE stmt; DEALLOCATE PREPARE stmt;
+
 SET @sql = IF(
 	(SELECT COUNT(*) FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'reportes' AND COLUMN_NAME = 'moderacion_observacion') = 0,
 	'ALTER TABLE reportes ADD COLUMN moderacion_observacion VARCHAR(500) NULL',
 	'SELECT 1'
 );
+
 PREPARE stmt FROM @sql; EXECUTE stmt; DEALLOCATE PREPARE stmt;
 
 UPDATE reportes r
@@ -126,12 +139,15 @@ SET @sql = IF(
 	'ALTER TABLE reportes ADD CONSTRAINT fk_reportes_establecimiento FOREIGN KEY (establecimiento_id) REFERENCES establecimientos(id)',
 	'SELECT 1'
 );
+
 PREPARE stmt FROM @sql; EXECUTE stmt; DEALLOCATE PREPARE stmt;
+
 SET @sql = IF(
 	(SELECT COUNT(*) FROM information_schema.TABLE_CONSTRAINTS WHERE CONSTRAINT_SCHEMA = DATABASE() AND TABLE_NAME = 'reportes' AND CONSTRAINT_NAME = 'fk_reportes_responsable') = 0,
 	'ALTER TABLE reportes ADD CONSTRAINT fk_reportes_responsable FOREIGN KEY (responsable_usuario_id) REFERENCES usuarios(id)',
 	'SELECT 1'
 );
+
 PREPARE stmt FROM @sql; EXECUTE stmt; DEALLOCATE PREPARE stmt;
 
 CREATE TABLE IF NOT EXISTS imagenes (

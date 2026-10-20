@@ -4,7 +4,7 @@ import re
 from pathlib import Path
 from uuid import uuid4
 
-from flask import (
+from flask import ( # type: ignore
 	Flask,
 	abort,
 	redirect,
@@ -14,8 +14,8 @@ from flask import (
 	session,
 	url_for,
 )
-from pymysql.err import IntegrityError
-from werkzeug.security import check_password_hash, generate_password_hash
+from pymysql.err import IntegrityError # type: ignore
+from werkzeug.security import check_password_hash, generate_password_hash # type: ignore
 
 from database import obtener_conexion, obtener_cursor
 

@@ -1,7 +1,7 @@
 import os
 
-import pymysql
-from pymysql.cursors import DictCursor
+import pymysql # type: ignore
+from pymysql.cursors import DictCursor # type: ignore
 
 
 DB_CONFIG = {
